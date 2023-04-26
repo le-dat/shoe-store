@@ -40,7 +40,6 @@ const Product: React.FC<IProps> = ({ product, productRelative }) => {
         quantity: 1,
         createAt: moment(Date.now()).format("Do MMM YYYY"),
       };
-      setShowError(false);
       addCartProduct(data);
       notify("success", "Product added to cart successfully");
     } else {
@@ -59,6 +58,11 @@ const Product: React.FC<IProps> = ({ product, productRelative }) => {
   const toggleWishlist = () => {
     return isHeart ? handleRemoveWishlist() : handleAddWishlist();
   };
+
+  const handleSelectedSize = (size: string)=> {
+      setShowError(false);
+      setSelectedSize(size)
+  }
 
   if (!product) return <Loading />;
 
@@ -105,7 +109,7 @@ const Product: React.FC<IProps> = ({ product, productRelative }) => {
                     key={`${item?.size}-${index}`}
                     title={item?.size}
                     active={selectedSize === item?.size}
-                    onClick={() => setSelectedSize(item?.size)}
+                    onClick={() => handleSelectedSize(item?.size)}
                     disabled={item?.enabled === false}
                   />
                 ))}

@@ -17,7 +17,7 @@ const ProductCard: React.FC<ProductIProps> = ({
   slug,
 }) => {
   return (
-    <Link href={`/product/${slug}`} className=" hover:scale-105 transition ">
+    <Link href={`/product/${slug}`} className=" hover:scale-105 transition [-webkit-tap-highlight-color:transparent]">
       <Image
         src={thumbnail?.data?.attributes?.url}
         alt={name}

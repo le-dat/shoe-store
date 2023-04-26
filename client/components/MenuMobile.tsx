@@ -57,7 +57,7 @@ const MenuMobile: React.FC<IProps> = ({
 
   return (
     <div
-      className={`block md:hidden w-1/2 bg-gray-500 h-screen fixed z-50 top-0 bottom-0 left-0 pt-5 font-bold text-white -translate-x-full transition ${
+      className={`block md:hidden w-3/4 bg-gray-500 h-screen fixed z-50 top-0 bottom-0 left-0 pt-5 font-bold text-white -translate-x-full transition ${
         showMobileMenu && "translate-x-0"
       }`}
     >

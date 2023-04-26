@@ -12,7 +12,10 @@ const CartEmpty: React.FC<IProps> = ({ title = "cart" }) => {
       <p className="text-lg font-semibold">Your {title} is empty</p>
       <p className="text-sm text-center">
         You have no items in your shopping {title}.
-        <Link href="/" className="font-semibold hover:underline text-blue-800">
+        <Link
+          href="/"
+          className="font-semibold [-webkit-tap-highlight-color:transparent] hover:underline text-blue-800"
+        >
           Click here to continue shopping.
         </Link>
       </p>

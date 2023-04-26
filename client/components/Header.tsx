@@ -41,12 +41,12 @@ const Header: React.FC = () => {
   return (
     <>
       <header
-        className={`w-full bg-white flex items-center fixed z-40 top-0 py-4 transition-transform duration shadow-xl ${
+        className={`w-full bg-white flex items-center fixed z-40 top-0  transition-transform duration shadow-xl ${
           hideHeader ? "-translate-y-2 shadow-none" : "translate-y-0"
         }`}
       >
         <Wrapper className="flex items-center justify-between">
-          <Link href="/">
+          <Link href="/" className="py-7 px-2 [-webkit-tap-highlight-color:transparent]">
             <Image src="/logo.svg" width={50} height={50} priority alt="logo" />
           </Link>
           <Menu showSubMenu={showSubMenu} setShowSubMenu={setShowSubMenu} categories={categories} />

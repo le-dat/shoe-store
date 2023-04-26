@@ -6,7 +6,7 @@ interface IProps {
   disabled?: boolean;
 }
 const ButtonPagination: React.FC<IProps> = ({ title, disabled, onClick }) => {
-  const className = `py-2 px-4 rounded-md transition ${
+  const className = `py-2 px-4 rounded-md transition [-webkit-tap-highlight-color:transparent] ${
     disabled ? "bg-gray-200" : "bg-black text-white hover:bg-opacity-80"
   }`;
 

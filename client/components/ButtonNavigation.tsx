@@ -12,7 +12,7 @@ const ButtonNavigation: React.FC<IProps> = ({ icon, quantity = 0, disabled, onCl
   return (
     <button
       disabled={disabled}
-      className={`flex items-center justify-center relative gap-3 hover:bg-gray-300 rounded-full p-2 cursor-pointer transition ${customClass}`}
+      className={`flex items-center justify-center relative gap-3 hover:bg-gray-300 rounded-full p-2 cursor-pointer transition [-webkit-tap-highlight-color:transparent] ${customClass}`}
       onClick={onClick}
     >
       {icon}
