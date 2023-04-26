@@ -32,8 +32,8 @@ const CartItem: React.FC<CartProductIProps> = ({ id, product, quantity, size, cr
   };
 
   return (
-    <div className="flex gap-3 p-3 border-b hover:bg-gray-100 cursor-pointer transition rounded-lg">
-      <Link href={`/product/${product.slug}`} className="[-webkit-tap-highlight-color:transparent]">
+    <div className="flex gap-3 p-3 border-b hover:bg-gray-100 cursor-pointer transition rounded-lg [-webkit-tap-highlight-color:transparent]">
+      <Link href={`/product/${product.slug}`} className="">
         <Image
           src={product.thumbnail.data.attributes.url}
           alt={product.name}
