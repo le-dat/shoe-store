@@ -14,7 +14,7 @@ const DefaultLayout: React.FC<IProps> = ({ children }) => {
       {children}
       <Footer />
 
-      {/* toast */}
+      {/* toastify */}
       <ToastContainer />
     </div>
   );

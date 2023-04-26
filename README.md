@@ -16,13 +16,13 @@
 2. Install Package: yarn install
 3. Create an `.env` file and add the following variables.
 
-# CLOUDINARY
+# CLOUDINARY (create account in CLOUDINARY)
 
 CLOUDINARY_NAME
 CLOUDINARY_KEY
 CLOUDINARY_SECRET
 
-# url
+# url (create account in STRIPE)
 
 STRIPE_KEY
 CLIENT_URL=http://localhost:3000
@@ -49,5 +49,6 @@ Get relative product: http://127.0.0.1:1337/api/products?populate=*&filters[slug
 
 NEXT_PUBLIC_STRAPI_API_TOKEN
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+NEXT_PUBLIC_API_URL
 
 4. Run App: yarn dev
