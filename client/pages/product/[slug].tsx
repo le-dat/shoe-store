@@ -40,6 +40,7 @@ const Product: React.FC<IProps> = ({ product, productRelative }) => {
         quantity: 1,
         createAt: moment(Date.now()).format("Do MMM YYYY"),
       };
+      setShowError(false);
       addCartProduct(data);
       notify("success", "Product added to cart successfully");
     } else {
