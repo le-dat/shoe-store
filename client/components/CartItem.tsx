@@ -83,7 +83,7 @@ const CartItem: React.FC<CartProductIProps> = ({ id, product, quantity, size, cr
           <p className="text-gray-400 font-medium ">{formatCurrency(product.price * quantity)}</p>
           <button
             onClick={handleRemove}
-            className="flex items-center justify-center p-3 cursor-pointer hover:bg-gray-300 rounded-full"
+            className="flex items-center justify-center p-3 cursor-pointer hover:bg-gray-300 rounded-full  [-webkit-tap-highlight-color:transparent]"
           >
             <BsTrash />
           </button>

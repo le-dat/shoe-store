@@ -65,7 +65,7 @@ const Cart: React.FC<IProps> = () => {
 
                 {/* BUTTON CHECKOUT */}
                 <button
-                  className={`w-full flex items-center justify-center gap-2 py-4 rounded-full bg-black text-white cursor-pointer ${
+                  className={`w-full flex items-center justify-center gap-2 py-4 rounded-full bg-black text-white cursor-pointer [-webkit-tap-highlight-color:transparent] ${
                     loading ? "opacity-50" : ""
                   }`}
                   onClick={handleCheckOut}
