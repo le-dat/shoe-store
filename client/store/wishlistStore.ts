@@ -9,7 +9,7 @@ interface IProps {
   removeCartWishlist: (id: number | string) => void;
 }
 
-export const useWishlist = create<IProps>((set, get) => ({
+export const useWishlistStore = create<IProps>((set, get) => ({
   wishlist: [],
   getCartWishlist: (id) => get().wishlist.find((p) => p.id === id),
 

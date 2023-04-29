@@ -11,8 +11,8 @@ import ButtonNavigation from "./ButtonNavigation";
 import Menu from "./Menu";
 import MenuMobile from "./MenuMobile";
 import Wrapper from "./Wrapper";
-import { useCartStore } from "@/hooks/useCartStore";
-import { useWishlist } from "@/hooks/useWishlist";
+import { useCartStore } from "@/store/cartStore";
+import { useWishlistStore } from "@/store/wishlistStore";
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -21,7 +21,7 @@ const Header: React.FC = () => {
   const [hideHeader, setHideHeader] = useState<boolean>(true);
   const [categories, setCategories] = useState<any>(0);
   const cartProducts = useCartStore((state) => state.cartProducts);
-  const wishlist = useWishlist((state) => state.wishlist);
+  const wishlist = useWishlistStore((state) => state.wishlist);
   const IconMenuMobile = showMobileMenu ? MdClose : AiOutlineMenu;
 
   useEffect(() => {

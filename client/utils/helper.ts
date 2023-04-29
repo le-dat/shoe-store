@@ -20,10 +20,7 @@ export const formatCurrency = (money: number) => {
   return formatType.format(money);
 };
 
-export const notify = <T extends ToastType>(
-  type: "success" | T = "success",
-  message: string = "Success. Check your cart!"
-) => {
+export const notify = (type: ToastType, message: string = "Success. Check your cart!") => {
   return toast[type](message, {
     position: "bottom-right",
     autoClose: 5000,

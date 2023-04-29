@@ -59,6 +59,7 @@ export interface CategoryIProps {
 }
 
 export type ToastType = "info" | "success" | "warning" | "error";
+export type MethodAPIType = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
 
 export interface CartProductIProps {
   id: number | string;

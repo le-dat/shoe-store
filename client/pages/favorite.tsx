@@ -1,10 +1,10 @@
 import React from "react";
 
 import { CartEmpty, ProductCard, Wrapper } from "@/components";
-import { useWishlist } from "@/hooks/useWishlist";
+import { useWishlistStore } from "@/store/wishlistStore";
 
 const Favorite: React.FC = () => {
-  const wishlist = useWishlist((state) => state.wishlist);
+  const wishlist = useWishlistStore((state) => state.wishlist);
   return (
     <div className="py-20 mt-10">
       <Wrapper className="flex flex-col items-center justify-center">

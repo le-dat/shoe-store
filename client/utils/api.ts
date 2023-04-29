@@ -1,18 +1,19 @@
 import axios from "axios";
 
 import { API_URL, STRAPI_API_TOKEN } from "./urls";
+import { MethodAPIType } from "@/types";
+
+const options = (type: MethodAPIType) => ({
+  method: type,
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${STRAPI_API_TOKEN}`,
+  },
+});
 
 export const fetchData = async (endpoint: string) => {
-  const options = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${STRAPI_API_TOKEN}`,
-    },
-  };
-
   try {
-    const { data } = await axios.get(`${API_URL}/${endpoint}`, options);
+    const { data } = await axios.get(`${API_URL}/${endpoint}`, options("GET"));
     return data;
   } catch (error) {
     console.log(error);
@@ -20,17 +21,8 @@ export const fetchData = async (endpoint: string) => {
 };
 
 export const makePaymentRequest = async (endpoint: string, payload: any) => {
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${STRAPI_API_TOKEN}`,
-    },
-    body: JSON.stringify(payload),
-  };
-
   try {
-    const { data } = await axios.post(`${API_URL}/${endpoint}`, payload, options);
+    const { data } = await axios.post(`${API_URL}/${endpoint}`, payload, options("POST"));
     return data;
   } catch (error) {
     console.log(error);

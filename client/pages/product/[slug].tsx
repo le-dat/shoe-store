@@ -5,8 +5,8 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 import { ButtonSize, Loading, ProductDetailsCarousel, RelativeProducts, Wrapper } from "@/components";
-import { useCartStore } from "@/hooks/useCartStore";
-import { useWishlist } from "@/hooks/useWishlist";
+import { useCartStore } from "@/store/cartStore";
+import { useWishlistStore } from "@/store/wishlistStore";
 import { ListProductIProps } from "@/types";
 import { fetchData } from "@/utils/api";
 import { formatCurrency, getDiscountedPricePercentage, notify } from "@/utils/helper";
@@ -20,9 +20,9 @@ const Product: React.FC<IProps> = ({ product, productRelative }) => {
   const currentProduct = product.data?.[0]?.attributes;
   const currentProductId = product.data?.[0]?.id;
   const addCartProduct = useCartStore((state) => state.addCartProduct);
-  const addCartWishList = useWishlist((state) => state.addCartWishList);
-  const removeCartWishlist = useWishlist((state) => state.removeCartWishlist);
-  const getCartWishlist = useWishlist((state) => state.getCartWishlist);
+  const addCartWishList = useWishlistStore((state) => state.addCartWishList);
+  const removeCartWishlist = useWishlistStore((state) => state.removeCartWishlist);
+  const getCartWishlist = useWishlistStore((state) => state.getCartWishlist);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [showError, setShowError] = useState<boolean>(false);
   const [isHeart, setIsHeart] = useState<boolean>(false);
@@ -59,10 +59,10 @@ const Product: React.FC<IProps> = ({ product, productRelative }) => {
     return isHeart ? handleRemoveWishlist() : handleAddWishlist();
   };
 
-  const handleSelectedSize = (size: string)=> {
-      setShowError(false);
-      setSelectedSize(size)
-  }
+  const handleSelectedSize = (size: string) => {
+    setShowError(false);
+    setSelectedSize(size);
+  };
 
   if (!product) return <Loading />;
 

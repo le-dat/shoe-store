@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 
 import { CartEmpty, CartItem, Wrapper } from "@/components";
-import { useCartStore } from "@/hooks/useCartStore";
+import { useCartStore } from "@/store/cartStore";
 import { formatCurrency, getTotalPrice } from "@/utils/helper";
 import { makePaymentRequest } from "@/utils/api";
 
