@@ -4,15 +4,21 @@ import { CartProductIProps } from "@/types";
 
 interface IProps {
   cartProducts: CartProductIProps[];
+  setCartProduct: (data: CartProductIProps[]) => void;
   addCartProduct: (data: CartProductIProps) => void;
   removeCartProduct: (id: number | string) => void;
   updateCartProduct: (data: CartProductIProps) => void;
 }
 
-export const useCartStore = create<IProps>((set, get) => ({
+const useCartStore = create<IProps>((set, get) => ({
   cartProducts: [],
+
+  setCartProduct: (products) => {
+    return set({ cartProducts: products });
+  },
   addCartProduct: ({ id, product, quantity, size, createAt }) => {
     const existingProduct = get().cartProducts.find((p) => p.id === id && p.size === size);
+
     if (existingProduct) {
       // If product already exists, increment its quantity
       const updatedProducts = get().cartProducts.map((p) =>
@@ -26,7 +32,10 @@ export const useCartStore = create<IProps>((set, get) => ({
     }
   },
 
-  removeCartProduct: (id) => set((state) => ({ cartProducts: state.cartProducts.filter((p) => p.id !== id) })),
+  removeCartProduct: (id) => {
+    const updatedProducts = get().cartProducts.filter((p) => p.id !== id);
+    return set({ cartProducts: updatedProducts });
+  },
 
   updateCartProduct: ({ id, quantity, size, createAt }) => {
     const updatedProducts = get().cartProducts.map((p) =>
@@ -35,3 +44,5 @@ export const useCartStore = create<IProps>((set, get) => ({
     return set({ cartProducts: updatedProducts });
   },
 }));
+
+export default useCartStore;

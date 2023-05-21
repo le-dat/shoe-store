@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { BsChevronDown } from "react-icons/bs";
 
-import { navigation } from "@/constants";
+import { NAVIGATION_MENU } from "@/constants";
 import { CategoryDataIProps, MenuItemHasCategoryIProps } from "@/types";
 import { useRouter } from "next/router";
 
@@ -48,7 +48,7 @@ const Menu: React.FC<IProps> = ({ showSubMenu, setShowSubMenu, categories }) => 
 
   return (
     <div className="hidden md:flex items-center font-medium text-black">
-      {navigation.map((item) => (
+      {NAVIGATION_MENU.map((item) => (
         <div key={item.id} className="relative">
           {!!item.subMenu ? (
             <MenuItemHasCategory item={item} />

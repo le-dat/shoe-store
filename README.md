@@ -6,6 +6,11 @@
 ![shoe-store screenshot](https://raw.githubusercontent.com/le-dat/shoe-store/master/static/screenshot4.png)
 ![shoe-store screenshot](https://raw.githubusercontent.com/le-dat/shoe-store/master/static/screenshot5.png)
 
+### Feature:
+
+- Add, update, or delete products in your cart and wishlist.
+- Incorporate the Stripe payment gateway.
+
 ## Server
 
 ```

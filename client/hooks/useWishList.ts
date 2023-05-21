@@ -9,8 +9,9 @@ interface IProps {
   removeCartWishlist: (id: number | string) => void;
 }
 
-export const useWishlistStore = create<IProps>((set, get) => ({
+const useWishList = create<IProps>((set, get) => ({
   wishlist: [],
+
   getCartWishlist: (id) => get().wishlist.find((p) => p.id === id),
 
   addCartWishList: ({ id, product }) => {
@@ -22,5 +23,10 @@ export const useWishlistStore = create<IProps>((set, get) => ({
     }
   },
 
-  removeCartWishlist: (id) => set((state) => ({ wishlist: state.wishlist.filter((p) => p.id !== id) })),
+  removeCartWishlist: (id) => {
+    const updatedProducts = get().wishlist.filter((p) => p.id !== id);
+    return set({ wishlist: updatedProducts });
+  },
 }));
+
+export default useWishList;

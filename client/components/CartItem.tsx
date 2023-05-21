@@ -4,7 +4,7 @@ import React from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
 
-import { useCartStore } from "@/store/cartStore";
+import useCartStore from "@/hooks/useCartStore";
 import { CartProductIProps } from "@/types";
 import { formatCurrency, notify } from "@/utils/helper";
 

@@ -26,9 +26,9 @@ export default function Home({ data }: ListProductIProps) {
             extended stretches of running.
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center gap-4 mt-3 mb-12">
-          {data?.map(({ attributes }, index) => (
-            <ProductCard key={`product-${index}`} {...attributes} />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 items-center gap-4 mt-3 mb-12">
+          {data?.map(({ id, attributes }, index) => (
+            <ProductCard key={`product-${index}`} product={attributes} id={id} />
           ))}
         </div>
       </Wrapper>

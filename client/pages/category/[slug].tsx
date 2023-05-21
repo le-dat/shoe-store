@@ -3,18 +3,20 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 
-import { ButtonPagination, Loading, ProductCard, Wrapper } from "@/components";
+import { ButtonPagination, FilterProductPrice, Loading, ProductCard, Wrapper } from "@/components";
 import { ListProductIProps, ProductIProps } from "@/types";
 import { fetchData } from "@/utils/api";
+import useScrollTop from "@/hooks/useScrollTop";
 
 interface IProps {
   category: any;
   products: ProductIProps[];
   slug: string;
 }
-const maxResult = 3;
+const maxResult = 8;
 
 const Category: React.FC<IProps> = ({ category, products, slug }) => {
+  useScrollTop();
   const { query } = useRouter();
   const [pageIndex, setPageIndex] = useState<number>(1);
   const { data, error, isLoading }: { data: ListProductIProps; error: any; isLoading: boolean } = useSWR(
@@ -35,16 +37,11 @@ const Category: React.FC<IProps> = ({ category, products, slug }) => {
           <div className="text-[1.6rem] md:text-[2.2rem] font-semibold capitalize">{query?.slug}</div>
         </div>
 
-        {/* PRODUCT LIST */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
-          {data.data?.map(({ attributes }, index: number) => (
-            <ProductCard key={`product-filter-${index}`} {...attributes} />
-          ))}
-        </div>
+        <FilterProductPrice products={data.data} />
 
         {/* PAGINATION BUTTON */}
         {data.meta?.pagination?.total > maxResult && (
-          <div className="flex items-center justify-center gap-4 mt-2 mb-8 md:mb-0">
+          <div className="flex items-center justify-end gap-4  md:mb-0 mt-8 md:mt-12 mb-4">
             <ButtonPagination title="Previous" onClick={() => setPageIndex(pageIndex - 1)} disabled={pageIndex === 1} />
 
             <span className="mx-3">{`${pageIndex} of ${data.meta?.pagination?.pageCount}`}</span>

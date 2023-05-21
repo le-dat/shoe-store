@@ -3,14 +3,16 @@ import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 
 import { CartEmpty, CartItem, Wrapper } from "@/components";
-import { useCartStore } from "@/store/cartStore";
+import useCartStore from "@/hooks/useCartStore";
 import { formatCurrency, getTotalPrice } from "@/utils/helper";
 import { makePaymentRequest } from "@/utils/api";
+import useScrollTop from "@/hooks/useScrollTop";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
 
 interface IProps {}
 const Cart: React.FC<IProps> = () => {
+  useScrollTop();
   const [loading, setLoading] = useState<boolean>(false);
   const cartProducts = useCartStore((state) => state.cartProducts);
 

@@ -1,3 +1,5 @@
+("use client");
+
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -9,10 +11,11 @@ import { MdClose } from "react-icons/md";
 import { fetchData } from "@/utils/api";
 import ButtonNavigation from "./ButtonNavigation";
 import Menu from "./Menu";
+
+import useCartStore from "@/hooks/useCartStore";
 import MenuMobile from "./MenuMobile";
 import Wrapper from "./Wrapper";
-import { useCartStore } from "@/store/cartStore";
-import { useWishlistStore } from "@/store/wishlistStore";
+import useWishList from "@/hooks/useWishList";
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -21,9 +24,10 @@ const Header: React.FC = () => {
   const [hideHeader, setHideHeader] = useState<boolean>(true);
   const [categories, setCategories] = useState<any>(0);
   const cartProducts = useCartStore((state) => state.cartProducts);
-  const wishlist = useWishlistStore((state) => state.wishlist);
+  const wishList = useWishList((state) => state.wishlist);
   const IconMenuMobile = showMobileMenu ? MdClose : AiOutlineMenu;
 
+  // scroll header
   useEffect(() => {
     const handleScroll = () => setHideHeader(window.pageYOffset > 100);
     window.addEventListener("scroll", handleScroll);
@@ -55,7 +59,7 @@ const Header: React.FC = () => {
             <ButtonNavigation
               icon={<AiOutlineHeart size={20} />}
               onClick={() => router.push("/favorite")}
-              quantity={wishlist.length}
+              quantity={wishList.length}
             />
             <ButtonNavigation
               icon={<BsCart3 size={20} />}

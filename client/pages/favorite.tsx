@@ -1,10 +1,13 @@
 import React from "react";
 
 import { CartEmpty, ProductCard, Wrapper } from "@/components";
-import { useWishlistStore } from "@/store/wishlistStore";
+import useScrollTop from "@/hooks/useScrollTop";
+import useWishList from "@/hooks/useWishList";
 
 const Favorite: React.FC = () => {
-  const wishlist = useWishlistStore((state) => state.wishlist);
+  useScrollTop();
+  const wishlist = useWishList((state) => state.wishlist);
+
   return (
     <div className="py-20 mt-10">
       <Wrapper className="flex flex-col items-center justify-center">
@@ -14,8 +17,8 @@ const Favorite: React.FC = () => {
         {/* CART CONTENT */}
         {wishlist.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center gap-4 mt-3 mb-6">
-            {wishlist.map((product) => (
-              <ProductCard key={`cart-item-${product.id}`} {...product.product} />
+            {wishlist.map(({ id, product }) => (
+              <ProductCard key={`cart-item-${id}`} id={id} product={product} />
             ))}
           </div>
         ) : (

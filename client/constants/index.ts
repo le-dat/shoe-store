@@ -1,7 +1,11 @@
-export const navigation = [
+export const NAVIGATION_MENU = [
   { id: 1, name: "Home", url: "/" },
-  { id: 2, name: "About", url: "/about" },
+  { id: 2, name: "Guide", url: "/guide" },
   { id: 3, name: "Categories", subMenu: true },
-  { id: 4, name: "Service", url: "/service" },
+  { id: 4, name: "Contact", url: "/contact" },
 ];
-export const heroBannerSlides = ["/slide-1.png", "/slide-2.png", "/slide-3.png"];
+export const BANNERS = ["/banners/banner-1.png", "/banners/banner-2.png", "/banners/banner-3.png"];
+
+export const SHOE_STORE_STORAGE_KEY = "DAT_SHOE_STORE";
+export const CART_PRODUCTS = "CART_PRODUCTS";
+export const WISH_LIST = "WISH_LIST";

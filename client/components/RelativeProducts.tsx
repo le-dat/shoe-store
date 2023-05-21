@@ -27,8 +27,8 @@ const RelativeProduct: React.FC<IProps> = ({ products }) => {
     <div className="relative z-0 mt-[4rem] lg:mt-[8rem] ">
       <div className="text-2xl font-bold mb-5">You Might Also Like</div>
       <Carousel responsive={responsive} autoPlay containerClass="-mx-[10px]" itemClass="px-[10px]">
-        {products.data?.map(({ attributes }, index: number) => (
-          <ProductCard key={`relative-product-${index}`} {...attributes} />
+        {products.data?.map(({ id, attributes }, index: number) => (
+          <ProductCard key={`relative-product-${id}-${index}`} product={attributes} id={id} />
         ))}
       </Carousel>
     </div>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { BsChevronDown } from "react-icons/bs";
 
-import { navigation } from "@/constants";
+import { NAVIGATION_MENU } from "@/constants";
 import { CategoryDataIProps, MenuItemHasCategoryIProps } from "@/types";
 import { useRouter } from "next/router";
 
@@ -61,7 +61,7 @@ const MenuMobile: React.FC<IProps> = ({
         showMobileMenu && "translate-x-0"
       }`}
     >
-      {navigation.map((item) => (
+      {NAVIGATION_MENU.map((item) => (
         <div key={item.id} className="flex flex-col">
           {!!item.subMenu ? (
             <MenuItemHasCategory item={item} />

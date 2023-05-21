@@ -1,12 +1,13 @@
 import moment from "moment";
 import { GetStaticPaths, GetStaticProps } from "next";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 import { ButtonSize, Loading, ProductDetailsCarousel, RelativeProducts, Wrapper } from "@/components";
-import { useCartStore } from "@/store/cartStore";
-import { useWishlistStore } from "@/store/wishlistStore";
+import useCartStore from "@/hooks/useCartStore";
+import useIsHeart from "@/hooks/useIsHeart";
+import useScrollTop from "@/hooks/useScrollTop";
 import { ListProductIProps } from "@/types";
 import { fetchData } from "@/utils/api";
 import { formatCurrency, getDiscountedPricePercentage, notify } from "@/utils/helper";
@@ -17,19 +18,13 @@ interface IProps {
 }
 
 const Product: React.FC<IProps> = ({ product, productRelative }) => {
+  useScrollTop();
   const currentProduct = product.data?.[0]?.attributes;
   const currentProductId = product.data?.[0]?.id;
+  const { isHeart, toggleWishlist } = useIsHeart(currentProductId, currentProduct);
   const addCartProduct = useCartStore((state) => state.addCartProduct);
-  const addCartWishList = useWishlistStore((state) => state.addCartWishList);
-  const removeCartWishlist = useWishlistStore((state) => state.removeCartWishlist);
-  const getCartWishlist = useWishlistStore((state) => state.getCartWishlist);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [showError, setShowError] = useState<boolean>(false);
-  const [isHeart, setIsHeart] = useState<boolean>(false);
-
-  useEffect(() => {
-    setIsHeart(!!getCartWishlist(currentProductId));
-  }, [currentProductId]);
 
   const handleAddToCart = () => {
     if (!!selectedSize) {
@@ -38,25 +33,13 @@ const Product: React.FC<IProps> = ({ product, productRelative }) => {
         product: currentProduct,
         size: selectedSize,
         quantity: 1,
-        createAt: moment(Date.now()).format("Do MMM YYYY"),
+        createAt: moment(Date.now()).format("LLL"),
       };
       addCartProduct(data);
       notify("success", "Product added to cart successfully");
     } else {
       setShowError(true);
     }
-  };
-
-  const handleAddWishlist = () => {
-    addCartWishList({ id: currentProductId, product: currentProduct });
-    setIsHeart(true);
-  };
-  const handleRemoveWishlist = () => {
-    removeCartWishlist(currentProductId);
-    setIsHeart(false);
-  };
-  const toggleWishlist = () => {
-    return isHeart ? handleRemoveWishlist() : handleAddWishlist();
   };
 
   const handleSelectedSize = (size: string) => {

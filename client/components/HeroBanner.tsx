@@ -4,7 +4,7 @@ import { FcNext, FcPrevious } from "react-icons/fc";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
-import { heroBannerSlides } from "@/constants";
+import { BANNERS } from "@/constants";
 
 const HeroBanner: React.FC = () => {
   return (
@@ -32,8 +32,8 @@ const HeroBanner: React.FC = () => {
           </div>
         )}
       >
-        {heroBannerSlides.map((item, index) => (
-          <div key={`heroBannerSlides-${index}`}>
+        {BANNERS.map((item, index) => (
+          <div key={`banner-${index}`}>
             <Image
               src={item}
               alt={item}

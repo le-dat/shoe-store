@@ -3,6 +3,7 @@ export { default as ButtonPagination } from "./ButtonPagination";
 export { default as ButtonSize } from "./ButtonSize";
 export { default as CartEmpty } from "./CartEmpty";
 export { default as CartItem } from "./CartItem";
+export { default as FilterProductPrice } from "./FilterProductPrice";
 export { default as Footer } from "./Footer";
 export { default as Header } from "./Header";
 export { default as HeroBanner } from "./HeroBanner";

@@ -4,6 +4,7 @@ import { BsFillBagFill } from "react-icons/bs";
 import { MdOutlineAccountCircle, MdOutlinePayment } from "react-icons/md";
 
 import { Wrapper } from "@/components";
+import useScrollTop from "@/hooks/useScrollTop";
 
 export const services = [
   {
@@ -25,6 +26,8 @@ export const services = [
 ];
 
 const Contact: React.FC = () => {
+  useScrollTop();
+
   return (
     <Wrapper className="flex flex-col gap-5 mt-24 mb-7 ">
       <h3 className="text-lg font-semibold">Welcome to Le Dat Shoe Service </h3>

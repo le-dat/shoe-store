@@ -9,7 +9,7 @@ interface IProps {
 }
 const DefaultLayout: React.FC<IProps> = ({ children }) => {
   return (
-    <div>
+    <div id="app">
       <Header />
       {children}
       <Footer />

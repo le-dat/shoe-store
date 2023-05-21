@@ -10,14 +10,14 @@ export const getTotalPrice = (list: CartProductIProps[]) => {
 };
 
 // Create our number type formatter.
-const formatType = new Intl.NumberFormat("en-US", {
+const CURRENCY_FORMATTER = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
   maximumFractionDigits: 2,
 });
 
-export const formatCurrency = (money: number) => {
-  return formatType.format(money);
+export const formatCurrency = (number: number) => {
+  return CURRENCY_FORMATTER.format(number);
 };
 
 export const notify = (type: ToastType, message: string = "Success. Check your cart!") => {
