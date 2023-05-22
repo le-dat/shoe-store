@@ -9,6 +9,8 @@
 ### Feature:
 
 - Add, update, or delete products in your cart and wishlist.
+- Filter price shoe.
+- Next, Previous page.
 - Incorporate the Stripe payment gateway.
 
 ## Server
