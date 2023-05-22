@@ -8,10 +8,10 @@
 
 ### Feature:
 
-- Add, update, or delete products in your cart and wishlist.
-- Filter price shoe.
-- Next, Previous page.
-- Incorporate the Stripe payment gateway.
+- Add, update, or delete products from your cart and wishlist.
+- Filter shoes by price.
+- Navigate to the next or previous page.
+- Implement the Stripe payment gateway.
 
 ## Server
 
