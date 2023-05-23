@@ -12,10 +12,16 @@ interface IProps {
   id: number | string;
   product: ProductIProps;
 }
+
 const ProductCard: React.FC<IProps> = ({ id, product }) => {
   const { isHeart, toggleWishlist } = useIsHeart(id, product);
 
   const Icon = isHeart ? FcLike : AiOutlineHeart;
+
+  const handleToggleWishlist = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    toggleWishlist();
+  };
 
   return (
     <div>
@@ -27,24 +33,26 @@ const ProductCard: React.FC<IProps> = ({ id, product }) => {
           width={200}
           height={200}
         />
-        <div className="hidden group-hover/image:flex items-end justify-center bg-black bg-opacity-10 absolute inset-0 z-10">
-          <Link
-            href={`/product/${product?.slug}`}
-            className="mb-4 rounded-tl-md rounded-bl-md transition p-3 bg-white text-black hover:bg-black hover:text-white"
-          >
+        <Link
+          href={`/product/${product?.slug}`}
+          className="hidden group-hover/image:flex absolute items-end justify-center inset-0 z-10 bg-black bg-opacity-10"
+        >
+          <button className="mb-4 rounded-tl-md rounded-bl-md transition p-3 bg-white text-black hover:bg-black hover:text-white">
             <AiFillShopping size={22} />
-          </Link>
+          </button>
           <button
-            onClick={toggleWishlist}
+            onClick={(e) => handleToggleWishlist(e)}
             className="mb-4 rounded-tr-md rounded-br-md transition p-3 bg-white text-black hover:bg-black hover:text-white"
           >
             <Icon size={22} />
           </button>
-        </div>
+        </Link>
       </div>
 
-      <Link href={`/product/${product?.slug}`} className="py-2">
-        <h2 className="text-lg font-medium hover:text-blue-500 line-camp-2">{product?.name}</h2>
+      <div className="py-2">
+        <Link href={`/product/${product?.slug}`}>
+          <h2 className="text-lg font-medium hover:text-blue-500 line-camp-2">{product?.name}</h2>
+        </Link>
         <div>
           <p className="mr-2 text-xl text-red-500">{formatCurrency(product?.price)}</p>
           {product?.original_price && (
@@ -56,7 +64,7 @@ const ProductCard: React.FC<IProps> = ({ id, product }) => {
             </div>
           )}
         </div>
-      </Link>
+      </div>
     </div>
   );
 };

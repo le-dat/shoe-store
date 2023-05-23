@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
-import { ButtonSize, Loading, ProductDetailsCarousel, RelativeProducts, Wrapper } from "@/components";
+import { ButtonSize, Loading, ProductDetailsCarousel, RelativeProducts, UpdateQuantity, Wrapper } from "@/components";
 import useCartStore from "@/hooks/useCartStore";
 import useIsHeart from "@/hooks/useIsHeart";
 import useScrollTop from "@/hooks/useScrollTop";
@@ -108,6 +108,7 @@ const Product: React.FC<IProps> = ({ product, productRelative }) => {
             >
               Add to Cart
             </button>
+
             {/* ADD CART TO WISHLIST BUTTON*/}
             <button
               className={`w-full py-4 rounded-full text-center border border-gray-400 cursor-pointer mt-3 flex items-center justify-center gap-2 hover:opacity-80 ${

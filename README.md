@@ -13,7 +13,7 @@
 - Navigate to the next or previous page.
 - Implement the Stripe payment gateway.
 
-## Server
+### Server
 
 ```
 cd server
@@ -56,7 +56,7 @@ Get product: http://127.0.0.1:1337/api/products?populate=*&filters[slug][$eq]=jo
 Get relative product: http://127.0.0.1:1337/api/products?populate=*&filters[slug][$ne]=jordan-why-not-6-pf
 ```
 
-## Client
+### Client
 
 ```
 cd client

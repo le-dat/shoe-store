@@ -44,7 +44,7 @@ const FilterProductPrice: React.FC<IProps> = ({ products }) => {
   }, [selectedPriceRange]);
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between gap-2 md:gap-0 flex-wrap">
       {/* FILTER */}
       <div>
         <div className="uppercase">Price</div>
