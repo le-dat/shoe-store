@@ -49,7 +49,7 @@ Get products: http://127.0.0.1:1337/api/products?populate=*
 
 Get categories: http://127.0.0.1:1337/api/categories?populate=*
 
-Pagination page: http://127.0.0.1:1337/api/products?populate=[filter][categories][slug][$eq]=jodan&pagination[page]=1&pagination[pageSize]=3
+Pagination page: http://127.0.0.1:1337/api/products?populate=*[filter][categories][slug][$eq]=jodan&pagination[page]=1&pagination[pageSize]=3
 
 Get product: http://127.0.0.1:1337/api/products?populate=*&filters[slug][$eq]=jordan-why-not-6-pf
 

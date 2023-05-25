@@ -26,7 +26,6 @@ const ModalSearch: React.FC = () => {
     const fetchData = async () => {
       setLoading(true);
       const { data } = await httpRequest.get(`/products?populate=*&filters[name][$startsWithi]=${debounce}`);
-      console.log(data);
       setLoading(false);
       setSearchResults(data);
     };

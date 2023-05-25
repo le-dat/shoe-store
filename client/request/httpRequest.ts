@@ -24,9 +24,9 @@ export const get = async (path: string) => {
   }
 };
 
-export const post = async (endpoint: string, payload: any) => {
+export const post = async (path: string, payload: any) => {
   try {
-    const { data } = await axios.post(`${API_URL}/${endpoint}`, payload, options("POST"));
+    const { data } = await httpRequest.post(path, payload, options("POST"));
     return data;
   } catch (error) {
     console.log(error);

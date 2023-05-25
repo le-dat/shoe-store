@@ -19,8 +19,6 @@ const FilterProductPrice: React.FC<IProps> = ({ products }) => {
   const [selectedPriceRange, setSelectedPriceRange] = useState<string[]>([]);
   const [productFilter, setProductFilter] = useState<ProductDataIProps[]>(products);
 
-  console.log(productFilter);
-
   const handlePriceRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     if (selectedPriceRange.includes(value)) {
@@ -43,30 +41,30 @@ const FilterProductPrice: React.FC<IProps> = ({ products }) => {
 
   useEffect(() => {
     setProductFilter(filteredProducts);
-  }, [selectedPriceRange]);
-
-  console.log(productFilter);
+  }, [selectedPriceRange, products]);
 
   return (
     <div className="flex justify-between gap-2 md:gap-0 flex-wrap">
       {/* FILTER */}
-      <div>
+      <div className="w-full lg:w-1/5">
         <div className="uppercase">Price</div>
-        {priceRanges.map((range) => (
-          <label key={range.value} className="flex items-center gap-3 mt-2 py-2 text-gray-500 hover:text-black ">
-            <input
-              type="checkbox"
-              value={range.value}
-              checked={selectedPriceRange.includes(range.value)}
-              onChange={handlePriceRangeChange}
-            />
-            {range.label}
-          </label>
-        ))}
+        <div className="flex items-center justify-between lg:block">
+          {priceRanges.map((range) => (
+            <label key={range.value} className="flex items-center gap-3 mt-2 py-2 text-gray-500 hover:text-black ">
+              <input
+                type="checkbox"
+                value={range.value}
+                checked={selectedPriceRange.includes(range.value)}
+                onChange={handlePriceRangeChange}
+              />
+              {range.label}
+            </label>
+          ))}
+        </div>
       </div>
 
       {/* PRODUCT LIST */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-6">
+      <div className="lg:w-4/5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-6">
         {productFilter.map(({ id, attributes }, index: number) => (
           <ProductCard key={`product-filter-${index}`} product={attributes} id={id} />
         ))}

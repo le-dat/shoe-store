@@ -15,7 +15,6 @@ interface IProps {
 
 const ProductCard: React.FC<IProps> = ({ id, product }) => {
   const { isHeart, toggleWishlist } = useIsHeart(id, product);
-
   const Icon = isHeart ? FcLike : AiOutlineHeart;
 
   const handleToggleWishlist = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
