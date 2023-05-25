@@ -7,7 +7,7 @@ import { ButtonPagination, FilterProductPrice, Loading, ProductCard, Wrapper } f
 import { ListProductIProps, ProductIProps } from "@/types";
 import * as httpRequest from "@/request/httpRequest";
 import useScrollTop from "@/hooks/useScrollTop";
-import useTitleDocument from "@/hooks/useTitleDocument";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 interface IProps {
   category: any;
@@ -27,7 +27,7 @@ const Category: React.FC<IProps> = () => {
   const [data, setData] = useState<ListProductIProps>({ data: [], meta: { pagination: {} } });
   const [loading, setLoading] = useState<boolean>(false);
   useScrollTop();
-  useTitleDocument(`${query.slug} | Dat Shoes`);
+  useDocumentTitle(`${query.slug} | Dat Shoes`);
 
   useEffect(() => {
     const fetchData = async () => {

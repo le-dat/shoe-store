@@ -7,14 +7,14 @@ import useCartStore from "@/hooks/useCartStore";
 import { formatCurrency, getTotalPrice } from "@/utils/helper";
 import * as httpRequest from "@/request/httpRequest";
 import useScrollTop from "@/hooks/useScrollTop";
-import useTitleDocument from "@/hooks/useTitleDocument";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
 
 interface IProps {}
 const Cart: React.FC<IProps> = () => {
   useScrollTop();
-  useTitleDocument("Your Cart | Dat Shoe");
+  useDocumentTitle("Your Cart | Dat Shoe");
   const [loading, setLoading] = useState<boolean>(false);
   const cartProducts = useCartStore((state) => state.cartProducts);
 

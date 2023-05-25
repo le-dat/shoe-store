@@ -1,6 +1,6 @@
 import { Wrapper } from "@/components";
 import useScrollTop from "@/hooks/useScrollTop";
-import useTitleDocument from "@/hooks/useTitleDocument";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -8,7 +8,7 @@ import { GiBurningDot } from "react-icons/gi";
 
 const About: React.FC = () => {
   useScrollTop();
-  useTitleDocument("Guide | Dat Shoe");
+  useDocumentTitle("Guide | Dat Shoe");
 
   return (
     <Wrapper className="flex flex-col gap-4 mt-28 mb-7">

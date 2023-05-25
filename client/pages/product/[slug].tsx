@@ -11,7 +11,7 @@ import useScrollTop from "@/hooks/useScrollTop";
 import { ListProductIProps } from "@/types";
 import * as httpRequest from "@/request/httpRequest";
 import { formatCurrency, getDiscountedPricePercentage, notify } from "@/utils/helper";
-import useTitleDocument from "@/hooks/useTitleDocument";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 interface IProps {
   product: ListProductIProps;
@@ -27,7 +27,7 @@ const Product: React.FC<IProps> = ({ product, productRelative }) => {
   const [showError, setShowError] = useState<boolean>(false);
 
   useScrollTop();
-  useTitleDocument(`${currentProduct.name} | Dat Shoes`);
+  useDocumentTitle(`${currentProduct.name} | Dat Shoes`);
 
   const handleAddToCart = () => {
     if (!!selectedSize) {
