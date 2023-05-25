@@ -3,9 +3,11 @@ import React from "react";
 import { CartEmpty, ProductCard, Wrapper } from "@/components";
 import useScrollTop from "@/hooks/useScrollTop";
 import useWishList from "@/hooks/useWishList";
+import useTitleDocument from "@/hooks/useTitleDocument";
 
 const Favorite: React.FC = () => {
   useScrollTop();
+  useTitleDocument("Favorite | Dat Shoe");
   const wishlist = useWishList((state) => state.wishlist);
 
   return (

@@ -21,8 +21,9 @@ const MenuMobile: React.FC<IProps> = ({
   setShowMobileMenu,
   categories,
 }) => {
+  const { query } = useRouter();
+
   const MenuItemHasCategory: React.FC<{ item: MenuItemHasCategoryIProps }> = ({ item }) => {
-    const { query } = useRouter();
     return (
       <div className="cursor-pointer transition" onClick={() => setShowSubMenu(!showSubMenu)}>
         <div className="flex items-center gap-2 py-3 px-7 opacity-70 hover:opacity-100 hover:bg-slate-400">

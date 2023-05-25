@@ -19,6 +19,8 @@ const FilterProductPrice: React.FC<IProps> = ({ products }) => {
   const [selectedPriceRange, setSelectedPriceRange] = useState<string[]>([]);
   const [productFilter, setProductFilter] = useState<ProductDataIProps[]>(products);
 
+  console.log(productFilter);
+
   const handlePriceRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     if (selectedPriceRange.includes(value)) {
@@ -42,6 +44,8 @@ const FilterProductPrice: React.FC<IProps> = ({ products }) => {
   useEffect(() => {
     setProductFilter(filteredProducts);
   }, [selectedPriceRange]);
+
+  console.log(productFilter);
 
   return (
     <div className="flex justify-between gap-2 md:gap-0 flex-wrap">

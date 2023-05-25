@@ -1,10 +1,10 @@
-import Link from "next/link";
 import React from "react";
 import { BsChevronDown } from "react-icons/bs";
 
 import { NAVIGATION_MENU } from "@/constants";
 import { CategoryDataIProps, MenuItemHasCategoryIProps } from "@/types";
-import { useRouter } from "next/router";
+import MenuItem from "./MenuItem";
+import NavLink from "./NavLink";
 
 export interface IProps {
   showSubMenu: boolean;
@@ -13,32 +13,21 @@ export interface IProps {
 }
 
 const Menu: React.FC<IProps> = ({ showSubMenu, setShowSubMenu, categories }) => {
-  const { query } = useRouter();
-
   const MenuItemHasCategory: React.FC<{ item: MenuItemHasCategoryIProps }> = ({ item }) => {
     return (
       <div
-        className="cursor-pointer py-3 px-7 flex items-center gap-2 relative"
+        className="cursor-pointer py-3 px-7 flex items-center gap-2 relative text-gray-400 hover:text-gray-950"
         onMouseEnter={() => setShowSubMenu(true)}
         onMouseLeave={() => setShowSubMenu(false)}
       >
         {item.name}
         <BsChevronDown size={14} />
         {showSubMenu && (
-          <div className="bg-white absolute top-11 left-0 min-w-[250px] flex flex-col text-black shadow-lg">
+          <div className="bg-white absolute top-11 left-0 min-w-[250px] flex flex-col text-black shadow-2xl border">
             {categories?.map(({ attributes: { name, slug, products } }) => (
-              <Link
-                key={`category-${slug}`}
-                href={`/category/${slug}`}
-                className={`${
-                  query.slug === slug ? "bg-gray-200" : ""
-                } cursor-pointer py-3 px-7 hover:bg-gray-100 flex items-center justify-between capitalize`}
-              >
+              <MenuItem key={`category-${slug}`} slug={slug} quantity={products?.data?.length}>
                 {name}
-                <span className="rounded-full w-7 h-7 flex items-center justify-center bg-gray-200">
-                  {products?.data?.length}
-                </span>
-              </Link>
+              </MenuItem>
             ))}
           </div>
         )}
@@ -53,9 +42,9 @@ const Menu: React.FC<IProps> = ({ showSubMenu, setShowSubMenu, categories }) => 
           {!!item.subMenu ? (
             <MenuItemHasCategory item={item} />
           ) : (
-            <Link href={item.url ?? "/"} className="cursor-pointer py-3 px-7 opacity-70 hover:opacity-100">
+            <NavLink href={item.url ?? "/"} customClass="cursor-pointer py-3 px-7">
               {item.name}
-            </Link>
+            </NavLink>
           )}
         </div>
       ))}

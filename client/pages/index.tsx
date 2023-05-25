@@ -2,19 +2,22 @@ import { GetStaticProps } from "next";
 import { Inter } from "next/font/google";
 
 import { HeroBanner, ProductCard, Wrapper } from "@/components";
+import useScrollTop from "@/hooks/useScrollTop";
 import { ListProductIProps } from "@/types";
-import { fetchData } from "@/utils/api";
+import * as httpRequest from "@/request/httpRequest";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { data } = await fetchData("api/products?populate=*");
+  const { data } = await httpRequest.get("/products?populate=*");
   return {
     props: { data },
   };
 };
 
 export default function Home({ data }: ListProductIProps) {
+  useScrollTop();
+
   return (
     <main>
       <HeroBanner />

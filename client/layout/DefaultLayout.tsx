@@ -2,7 +2,7 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { Footer, Header } from "@/components";
+import { Footer, Header, ModalSearch } from "@/components";
 
 interface IProps {
   children: React.ReactNode;
@@ -14,6 +14,8 @@ const DefaultLayout: React.FC<IProps> = ({ children }) => {
       {children}
       <Footer />
 
+      {/* MODAL */}
+      <ModalSearch />
       {/* toastify */}
       <ToastContainer />
     </div>

@@ -5,14 +5,16 @@ import { loadStripe } from "@stripe/stripe-js";
 import { CartEmpty, CartItem, Wrapper } from "@/components";
 import useCartStore from "@/hooks/useCartStore";
 import { formatCurrency, getTotalPrice } from "@/utils/helper";
-import { makePaymentRequest } from "@/utils/api";
+import * as httpRequest from "@/request/httpRequest";
 import useScrollTop from "@/hooks/useScrollTop";
+import useTitleDocument from "@/hooks/useTitleDocument";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
 
 interface IProps {}
 const Cart: React.FC<IProps> = () => {
   useScrollTop();
+  useTitleDocument("Your Cart | Dat Shoe");
   const [loading, setLoading] = useState<boolean>(false);
   const cartProducts = useCartStore((state) => state.cartProducts);
 
@@ -20,7 +22,7 @@ const Cart: React.FC<IProps> = () => {
     try {
       setLoading(true);
       const stripe = await stripePromise;
-      const res = await makePaymentRequest("api/orders", { products: cartProducts });
+      const res = await httpRequest.post("/orders", { products: cartProducts });
       await stripe?.redirectToCheckout({
         sessionId: res.stripeSession.id,
       });

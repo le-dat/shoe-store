@@ -10,6 +10,7 @@
 
 - Add, update, or delete products from your cart and wishlist.
 - Filter shoes by price.
+- Find your perfect pair of shoes effortlessly with our user-friendly search feature.
 - Navigate to the next or previous page.
 - Implement the Stripe payment gateway.
 
@@ -19,8 +20,7 @@
 cd server
 ```
 
-Create an `.env` file and add the following variables.
-`CLOUDINARY (create account in CLOUDINARY)`
+Create an `.env` file and add the following variables.[Create account in CLOUDINARY](https://cloudinary.com/)
 
 ```
 CLOUDINARY_NAME
@@ -28,21 +28,21 @@ CLOUDINARY_KEY
 CLOUDINARY_SECRET
 ```
 
-`url (create account in STRIPE)`
+[create account in STRIPE](https://dashboard.stripe.com/test/developers)
 
 ```
 STRIPE_KEY
 CLIENT_URL=http://localhost:3000
 ```
 
-`develop`
+develop
 
 ```
 yarn install
 yarn develop
 ```
 
-`api`:
+strapi api:
 
 ```
 Get products: http://127.0.0.1:1337/api/products?populate=*
@@ -70,7 +70,7 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 NEXT_PUBLIC_API_URL
 ```
 
-`develop`
+develop
 
 ```
 yarn install

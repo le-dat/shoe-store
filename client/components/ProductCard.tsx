@@ -28,7 +28,7 @@ const ProductCard: React.FC<IProps> = ({ id, product }) => {
       <div className="flex relative bg-gray-100 shadow-md items-center justify-center h-[200px] md:h-[218px] lg:h-[230px] overflow-hidden group/image ">
         <Image
           src={product?.thumbnail?.data?.attributes?.url || "/spinner.svg"}
-          className=" group-hover/image:scale-90 transition ease-in duration-200 object-contain "
+          className="group-hover/image:scale-90 transition ease-in duration-200 object-contain "
           alt={product?.name}
           width={200}
           height={200}

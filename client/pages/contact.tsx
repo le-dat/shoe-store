@@ -30,7 +30,7 @@ const Contact: React.FC = () => {
 
   return (
     <Wrapper className="flex flex-col gap-5 mt-24 mb-7 ">
-      <h3 className="text-lg font-semibold">Welcome to Le Dat Shoe Service </h3>
+      <h3 className="text-lg font-semibold">Welcome to Dat Shoe Service </h3>
       {services.map(({ icon, title }, index) => (
         <div
           key={`service-${index}`}

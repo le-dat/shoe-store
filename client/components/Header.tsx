@@ -5,17 +5,17 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { AiOutlineHeart, AiOutlineMenu } from "react-icons/ai";
-import { BsCart3 } from "react-icons/bs";
+import { BsCart3, BsSearch } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
 
-import { fetchData } from "@/utils/api";
+import useCartStore from "@/hooks/useCartStore";
+import useWishList from "@/hooks/useWishList";
 import ButtonNavigation from "./ButtonNavigation";
 import Menu from "./Menu";
-
-import useCartStore from "@/hooks/useCartStore";
 import MenuMobile from "./MenuMobile";
 import Wrapper from "./Wrapper";
-import useWishList from "@/hooks/useWishList";
+import useModalSearch from "@/hooks/useModalSearch";
+import * as httpRequest from "@/request/httpRequest";
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -25,6 +25,7 @@ const Header: React.FC = () => {
   const [categories, setCategories] = useState<any>(0);
   const cartProducts = useCartStore((state) => state.cartProducts);
   const wishList = useWishList((state) => state.wishlist);
+  const setShowModal = useModalSearch((state) => state.setShowModal);
   const IconMenuMobile = showMobileMenu ? MdClose : AiOutlineMenu;
 
   // scroll header
@@ -36,7 +37,7 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const { data } = await fetchData("api/categories?populate=*");
+      const { data } = await httpRequest.get("/categories?populate=*");
       setCategories(data);
     };
     fetchCategories();
@@ -45,17 +46,24 @@ const Header: React.FC = () => {
   return (
     <>
       <header
-        className={`w-full bg-white flex items-center fixed z-40 top-0  transition-transform duration shadow-xl ${
+        className={`w-full bg-white flex items-center fixed z-30 top-0 transition-transform duration shadow-xl ${
           hideHeader ? "-translate-y-2 shadow-none" : "translate-y-0"
         }`}
       >
         <Wrapper className="flex items-center justify-between">
-          <Link href="/" className="py-7 px-2 [-webkit-tap-highlight-color:transparent]">
+          <Link href="/" className="flex-1 py-7 px-2 [-webkit-tap-highlight-color:transparent]">
             <Image src="/logo.svg" width={50} height={50} priority alt="logo" />
           </Link>
-          <Menu showSubMenu={showSubMenu} setShowSubMenu={setShowSubMenu} categories={categories} />
 
-          <div className="flex items-center gap-3">
+          <div className="flex-1">
+            <Menu showSubMenu={showSubMenu} setShowSubMenu={setShowSubMenu} categories={categories} />
+          </div>
+
+          <div className="flex-1 flex items-center justify-end gap-3">
+            <button className="flex items-center p-2" onClick={() => setShowModal(true)}>
+              <BsSearch size={18} />
+            </button>
+
             <ButtonNavigation
               icon={<AiOutlineHeart size={20} />}
               onClick={() => router.push("/favorite")}

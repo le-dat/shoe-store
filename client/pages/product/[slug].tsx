@@ -9,8 +9,9 @@ import useCartStore from "@/hooks/useCartStore";
 import useIsHeart from "@/hooks/useIsHeart";
 import useScrollTop from "@/hooks/useScrollTop";
 import { ListProductIProps } from "@/types";
-import { fetchData } from "@/utils/api";
+import * as httpRequest from "@/request/httpRequest";
 import { formatCurrency, getDiscountedPricePercentage, notify } from "@/utils/helper";
+import useTitleDocument from "@/hooks/useTitleDocument";
 
 interface IProps {
   product: ListProductIProps;
@@ -18,13 +19,15 @@ interface IProps {
 }
 
 const Product: React.FC<IProps> = ({ product, productRelative }) => {
-  useScrollTop();
   const currentProduct = product.data?.[0]?.attributes;
   const currentProductId = product.data?.[0]?.id;
   const { isHeart, toggleWishlist } = useIsHeart(currentProductId, currentProduct);
   const addCartProduct = useCartStore((state) => state.addCartProduct);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [showError, setShowError] = useState<boolean>(false);
+
+  useScrollTop();
+  useTitleDocument(`${currentProduct.name} | Dat Shoes`);
 
   const handleAddToCart = () => {
     if (!!selectedSize) {
@@ -140,7 +143,7 @@ const Product: React.FC<IProps> = ({ product, productRelative }) => {
 export default Product;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const products = await fetchData(`api/products?populate=*`);
+  const products = await httpRequest.get(`/products?populate=*`);
   const paths = products?.data?.map((c: { attributes: { slug: string } }) => ({
     params: {
       slug: c?.attributes?.slug,
@@ -161,8 +164,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
 
-  const product = await fetchData(`api/products?populate=*&filters[slug][$eq]=${slug}`);
-  const productRelative = await fetchData(`api/products?populate=*&filters[slug][$ne]=${slug}`);
+  const product = await httpRequest.get(`/products?populate=*&filters[slug][$eq]=${slug}`);
+  const productRelative = await httpRequest.get(`/products?populate=*&filters[slug][$ne]=${slug}`);
   return {
     props: {
       product,

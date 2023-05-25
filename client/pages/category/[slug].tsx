@@ -5,8 +5,9 @@ import useSWR from "swr";
 
 import { ButtonPagination, FilterProductPrice, Loading, ProductCard, Wrapper } from "@/components";
 import { ListProductIProps, ProductIProps } from "@/types";
-import { fetchData } from "@/utils/api";
+import * as httpRequest from "@/request/httpRequest";
 import useScrollTop from "@/hooks/useScrollTop";
+import useTitleDocument from "@/hooks/useTitleDocument";
 
 interface IProps {
   category: any;
@@ -17,11 +18,13 @@ const maxResult = 8;
 
 const Category: React.FC<IProps> = ({ category, products, slug }) => {
   useScrollTop();
+  useTitleDocument(`${slug} | Dat Shoes`);
+
   const { query } = useRouter();
   const [pageIndex, setPageIndex] = useState<number>(1);
   const { data, error, isLoading }: { data: ListProductIProps; error: any; isLoading: boolean } = useSWR(
-    `api/products?populate=*&[filters][categories][slug][$eq]=${slug}&pagination[page]=${pageIndex}&pagination[pageSize]=${maxResult}`,
-    fetchData,
+    `/products?populate=*&filters[categories][slug][$eq]=${slug}&pagination[page]=${pageIndex}&pagination[pageSize]=${maxResult}`,
+    httpRequest.get,
     { fallbackData: products }
   );
 
@@ -63,7 +66,7 @@ const Category: React.FC<IProps> = ({ category, products, slug }) => {
 export default Category;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const category = await fetchData(`api/categories?populate=*`);
+  const category = await httpRequest.get(`/categories?populate=*`);
   const paths = category?.data?.map((c: { attributes: { slug: string } }) => ({
     params: {
       slug: c.attributes.slug,
@@ -84,9 +87,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
 
-  const category = await fetchData(`api/categories?filters[slug][$eq]=${slug}`);
-  const products = await fetchData(
-    `api/products?populate=[filter][categories][slug][$eq]=${slug}&pagination[page]=1&pagination[pageSize]=${maxResult}`
+  const category = await httpRequest.get(`/categories?filters[slug][$eq]=${slug}`);
+  const products = await httpRequest.get(
+    `/products?populate=*&filters[categories][slug][$eq]=${slug}&pagination[page]=1&pagination[pageSize]=${maxResult}`
   );
   return {
     props: {
