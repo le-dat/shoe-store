@@ -33,7 +33,7 @@ const Category: React.FC<IProps> = () => {
     const fetchData = async () => {
       setLoading(true);
       const res = await httpRequest.get(
-        `/products?populate=*&filters[categories][slug][$eq]=${query.slug}&pagination[page]=${pageIndex}&pagination[pageSize]=${maxResult}`
+        `/products?populate=*&[filters][categories][slug][$eq]=${query.slug}&pagination[page]=${pageIndex}&pagination[pageSize]=${maxResult}`
       );
       setData(res);
       setLoading(false);
