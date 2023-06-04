@@ -1,11 +1,11 @@
-import React from "react";
+import React from "react"
 
 interface IProps {
-  icon: React.ReactNode;
-  onClick: any;
-  customClass?: string;
-  disabled?: boolean;
-  quantity?: number;
+  icon: React.ReactNode
+  onClick: any
+  customClass?: string
+  disabled?: boolean
+  quantity?: number
 }
 
 const ButtonNavigation: React.FC<IProps> = ({ icon, quantity = 0, disabled, onClick, customClass }) => {
@@ -23,7 +23,7 @@ const ButtonNavigation: React.FC<IProps> = ({ icon, quantity = 0, disabled, onCl
         </span>
       )}
     </button>
-  );
-};
+  )
+}
 
-export default ButtonNavigation;
+export default ButtonNavigation

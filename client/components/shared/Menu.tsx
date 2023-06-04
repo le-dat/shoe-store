@@ -1,15 +1,15 @@
-import React from "react";
-import { BsChevronDown } from "react-icons/bs";
+import React from "react"
+import { BsChevronDown } from "react-icons/bs"
 
-import { NAVIGATION_MENU } from "@/constants";
-import { CategoryDataIProps, MenuItemHasCategoryIProps } from "@/types";
-import MenuItem from "./MenuItem";
-import NavLink from "./NavLink";
+import { NAVIGATION_MENU } from "@/constants"
+import { CategoryDataIProps, MenuItemHasCategoryIProps } from "@/types"
+import MenuItem from "./MenuItem"
+import NavLink from "./NavLink"
 
 export interface IProps {
-  showSubMenu: boolean;
-  setShowSubMenu: React.Dispatch<React.SetStateAction<boolean>>;
-  categories: CategoryDataIProps[];
+  showSubMenu: boolean
+  setShowSubMenu: React.Dispatch<React.SetStateAction<boolean>>
+  categories: CategoryDataIProps[]
 }
 
 const Menu: React.FC<IProps> = ({ showSubMenu, setShowSubMenu, categories }) => {
@@ -32,8 +32,8 @@ const Menu: React.FC<IProps> = ({ showSubMenu, setShowSubMenu, categories }) => 
           </div>
         )}
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <div className="hidden md:flex items-center font-medium text-black">
@@ -49,7 +49,7 @@ const Menu: React.FC<IProps> = ({ showSubMenu, setShowSubMenu, categories }) => 
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default Menu;
+export default Menu

@@ -1,13 +1,13 @@
-import React from "react";
+import React from "react"
 
 interface IProps {
-  showModal: boolean;
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  children: React.ReactNode;
+  showModal: boolean
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>
+  children: React.ReactNode
 }
 
 const WrapperModal: React.FC<IProps> = ({ showModal, setShowModal, children }) => {
-  if (!showModal) return null;
+  if (!showModal) return null
 
   return (
     <div
@@ -18,7 +18,7 @@ const WrapperModal: React.FC<IProps> = ({ showModal, setShowModal, children }) =
         {children}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default WrapperModal;
+export default WrapperModal

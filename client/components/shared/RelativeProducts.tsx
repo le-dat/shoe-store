@@ -1,12 +1,12 @@
-import React from "react";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import React from "react"
+import Carousel from "react-multi-carousel"
+import "react-multi-carousel/lib/styles.css"
 
-import { ListProductIProps } from "@/types";
-import ProductCard from "./ProductCard";
+import { ListProductIProps } from "@/types"
+import ProductCard from "./ProductCard"
 
 interface IProps {
-  products: ListProductIProps;
+  products: ListProductIProps
 }
 const RelativeProduct: React.FC<IProps> = ({ products }) => {
   const responsive = {
@@ -22,7 +22,7 @@ const RelativeProduct: React.FC<IProps> = ({ products }) => {
       breakpoint: { max: 767, min: 0 },
       items: 1,
     },
-  };
+  }
   return (
     <div className="relative z-0 mt-[4rem] lg:mt-[8rem] ">
       <div className="text-2xl font-bold mb-5">You Might Also Like</div>
@@ -32,7 +32,7 @@ const RelativeProduct: React.FC<IProps> = ({ products }) => {
         ))}
       </Carousel>
     </div>
-  );
-};
+  )
+}
 
-export default RelativeProduct;
+export default RelativeProduct

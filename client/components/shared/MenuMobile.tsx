@@ -1,17 +1,17 @@
-import Link from "next/link";
-import React from "react";
-import { BsChevronDown } from "react-icons/bs";
+import Link from "next/link"
+import React from "react"
+import { BsChevronDown } from "react-icons/bs"
 
-import { NAVIGATION_MENU } from "@/constants";
-import { CategoryDataIProps, MenuItemHasCategoryIProps } from "@/types";
-import { useRouter } from "next/router";
+import { NAVIGATION_MENU } from "@/constants"
+import { CategoryDataIProps, MenuItemHasCategoryIProps } from "@/types"
+import { useRouter } from "next/router"
 
 export interface IProps {
-  showSubMenu: boolean;
-  setShowSubMenu: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
-  showMobileMenu: boolean;
-  categories: CategoryDataIProps[];
+  showSubMenu: boolean
+  setShowSubMenu: React.Dispatch<React.SetStateAction<boolean>>
+  setShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>
+  showMobileMenu: boolean
+  categories: CategoryDataIProps[]
 }
 
 const MenuMobile: React.FC<IProps> = ({
@@ -21,7 +21,7 @@ const MenuMobile: React.FC<IProps> = ({
   setShowMobileMenu,
   categories,
 }) => {
-  const { query } = useRouter();
+  const { query } = useRouter()
 
   const MenuItemHasCategory: React.FC<{ item: MenuItemHasCategoryIProps }> = ({ item }) => {
     return (
@@ -37,8 +37,8 @@ const MenuMobile: React.FC<IProps> = ({
                 key={`category-mobile-${slug}`}
                 href={`/category/${slug}`}
                 onClick={() => {
-                  setShowMobileMenu(false);
-                  setShowSubMenu(false);
+                  setShowMobileMenu(false)
+                  setShowSubMenu(false)
                 }}
                 className={`${
                   query.slug === slug ? "bg-slate-400" : ""
@@ -53,8 +53,8 @@ const MenuMobile: React.FC<IProps> = ({
           </div>
         )}
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <div
@@ -78,7 +78,7 @@ const MenuMobile: React.FC<IProps> = ({
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default MenuMobile;
+export default MenuMobile

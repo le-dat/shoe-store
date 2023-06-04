@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^2.1.0",
@@ -20,6 +21,7 @@
     "eslint-config-next": "13.3.0",
     "moment": "^2.29.4",
     "next": "13.3.0",
+    "nextjs-progressbar": "^0.0.16",
     "postcss": "8.4.21",
     "prettier": "^2.8.8",
     "react": "18.2.0",

@@ -1,9 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import Image from "next/image"
+import Link from "next/link"
+import React from "react"
 
 interface IProps {
-  title?: string;
+  title?: string
 }
 const CartEmpty: React.FC<IProps> = ({ title = "cart" }) => {
   return (
@@ -20,7 +20,7 @@ const CartEmpty: React.FC<IProps> = ({ title = "cart" }) => {
         </Link>
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default CartEmpty;
+export default CartEmpty

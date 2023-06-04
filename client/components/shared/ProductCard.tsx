@@ -1,26 +1,26 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import Image from "next/image"
+import Link from "next/link"
+import React from "react"
 
-import useIsHeart from "@/hooks/useIsHeart";
-import { ProductIProps } from "@/types";
-import { formatCurrency, getDiscountedPricePercentage } from "@/utils/helper";
-import { AiFillShopping, AiOutlineHeart } from "react-icons/ai";
-import { FcLike } from "react-icons/fc";
+import useIsHeart from "@/hooks/useIsHeart"
+import { ProductIProps } from "@/types"
+import { formatCurrency, getDiscountedPricePercentage } from "@/utils/helper"
+import { AiFillShopping, AiOutlineHeart } from "react-icons/ai"
+import { FcLike } from "react-icons/fc"
 
 interface IProps {
-  id: number | string;
-  product: ProductIProps;
+  id: number | string
+  product: ProductIProps
 }
 
 const ProductCard: React.FC<IProps> = ({ id, product }) => {
-  const { isHeart, toggleWishlist } = useIsHeart(id, product);
-  const Icon = isHeart ? FcLike : AiOutlineHeart;
+  const { isHeart, toggleWishlist } = useIsHeart(id, product)
+  const Icon = isHeart ? FcLike : AiOutlineHeart
 
   const handleToggleWishlist = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    toggleWishlist();
-  };
+    e.preventDefault()
+    toggleWishlist()
+  }
 
   return (
     <div>
@@ -65,7 +65,7 @@ const ProductCard: React.FC<IProps> = ({ id, product }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductCard;
+export default ProductCard

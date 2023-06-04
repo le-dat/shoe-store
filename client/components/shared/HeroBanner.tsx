@@ -1,10 +1,10 @@
-import Image from "next/image";
-import React from "react";
-import { FcNext, FcPrevious } from "react-icons/fc";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import Image from "next/image"
+import React from "react"
+import { FcNext, FcPrevious } from "react-icons/fc"
+import { Carousel } from "react-responsive-carousel"
+import "react-responsive-carousel/lib/styles/carousel.min.css" // requires a loader
 
-import { BANNERS } from "@/constants";
+import { BANNERS } from "@/constants"
 
 const HeroBanner: React.FC = () => {
   return (
@@ -48,7 +48,7 @@ const HeroBanner: React.FC = () => {
         ))}
       </Carousel>
     </div>
-  );
-};
+  )
+}
 
-export default HeroBanner;
+export default HeroBanner

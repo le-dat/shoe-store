@@ -1,53 +1,45 @@
-import { GetStaticPaths, GetStaticProps } from "next";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import useSWR from "swr";
+import { GetStaticPaths, GetStaticProps } from "next"
+import { useRouter } from "next/router"
+import React, { useEffect, useState } from "react"
+import useSWR from "swr"
 
-import { ButtonPagination, FilterProductPrice, Loading, ProductCard, Wrapper } from "@/components";
-import { ListProductIProps, ProductIProps } from "@/types";
-import * as httpRequest from "@/request/httpRequest";
-import useScrollTop from "@/hooks/useScrollTop";
-import useDocumentTitle from "@/hooks/useDocumentTitle";
+import ButtonPagination from "@/components/shared/ButtonPagination"
+import FilterProductPrice from "@/components/shared/FilterProductPrice"
+import Loading from "@/components/shared/Loading"
+import Meta from "@/components/shared/Meta"
+import Wrapper from "@/components/shared/Wrapper"
+import useScrollTop from "@/hooks/useScrollTop"
+import * as httpRequest from "@/request/httpRequest"
+import { ListProductIProps, ProductIProps } from "@/types"
 
 interface IProps {
-  category: any;
-  products: ProductIProps[];
-  slug: string;
+  category: any
+  products: ProductIProps[]
+  slug: string
 }
-const maxResult = 8;
+const maxResult = 8
 
-const Category: React.FC<IProps> = () => {
-  const { query } = useRouter();
-  const [pageIndex, setPageIndex] = useState<number>(1);
-  // const { data, error, isLoading }: { data: ListProductIProps; error: any; isLoading: boolean } = useSWR(
-  //   `/products?populate=*&filters[categories][slug][$eq]=${slug}&pagination[page]=${pageIndex}&pagination[pageSize]=${maxResult}`,
-  //   httpRequest.get,
-  //   { fallbackData: products }
-  // );
-  const [data, setData] = useState<ListProductIProps>({ data: [], meta: { pagination: {} } });
-  const [loading, setLoading] = useState<boolean>(false);
-  useScrollTop();
-  useDocumentTitle(`${query.slug} | Dat Shoes`);
+const Category: React.FC<IProps> = ({ category, products, slug }) => {
+  const { query } = useRouter()
+  const [pageIndex, setPageIndex] = useState<number>(1)
+  const { data, error, isLoading }: { data: ListProductIProps; error: any; isLoading: boolean } = useSWR(
+    `/products?populate=*&filters[categories][slug][$eq]=${slug}&pagination[page]=${pageIndex}&pagination[pageSize]=${maxResult}`,
+    httpRequest.get,
+    { fallbackData: products }
+  )
+  useScrollTop()
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const res = await httpRequest.get(
-        `/products?populate=*&[filters][categories][slug][$eq]=${query.slug}&pagination[page]=${pageIndex}&pagination[pageSize]=${maxResult}`
-      );
-      setData(res);
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [query.slug]);
-
-  useEffect(() => {
-    setPageIndex(1);
-  }, [query.slug]);
+    setPageIndex(1)
+  }, [query.slug])
 
   return (
     <main className="w-full md:py-20">
+      <Meta
+        title={`${query.slug} | Dat Shoes`}
+        description="Fashion shoe"
+        image="https://res.cloudinary.com/djyfwalqq/image/upload/v1685025120/large_71e_P_Jq_Qifg_L_AC_UY_500_b45ac3cb8d.jpg"
+      />
       <Wrapper>
         {/* TITLE */}
         <div className="text-center mx-auto mt-24 md:mt-7 mb-10">
@@ -71,45 +63,45 @@ const Category: React.FC<IProps> = () => {
           </div>
         )}
 
-        {loading && <Loading />}
+        {isLoading && <Loading />}
       </Wrapper>
     </main>
-  );
-};
+  )
+}
 
-export default Category;
+export default Category
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const category = await httpRequest.get(`/categories?populate=*`);
-//   const paths = category?.data?.map((c: { attributes: { slug: string } }) => ({
-//     params: {
-//       slug: c.attributes.slug,
-//     },
-//   }));
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// };
+export const getStaticPaths: GetStaticPaths = async () => {
+  const category = await httpRequest.get(`/categories?populate=*`)
+  const paths = category?.data?.map((c: { attributes: { slug: string } }) => ({
+    params: {
+      slug: c.attributes.slug,
+    },
+  }))
+  return {
+    paths,
+    fallback: false,
+  }
+}
 
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-//   const { slug } = params || {}; // add null checking for params
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { slug } = params || {} // add null checking for params
 
-//   if (!slug) {
-//     return {
-//       notFound: true,
-//     };
-//   }
+  if (!slug) {
+    return {
+      notFound: true,
+    }
+  }
 
-//   const category = await httpRequest.get(`/categories?filters[slug][$eq]=${slug}`);
-//   const products = await httpRequest.get(
-//     `/products?populate=*&filters[categories][slug][$eq]=${slug}&pagination[page]=1&pagination[pageSize]=${maxResult}`
-//   );
-//   return {
-//     props: {
-//       category,
-//       products,
-//       slug: slug,
-//     },
-//   };
-// };
+  const category = await httpRequest.get(`/categories?filters[slug][$eq]=${slug}`)
+  const products = await httpRequest.get(
+    `/products?populate=*&filters[categories][slug][$eq]=${slug}&pagination[page]=1&pagination[pageSize]=${maxResult}`
+  )
+  return {
+    props: {
+      category,
+      products,
+      slug: slug,
+    },
+  }
+}

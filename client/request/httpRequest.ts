@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from "axios"
 
-import { API_URL, STRAPI_API_TOKEN } from "../utils/urls";
-import { MethodAPIType } from "@/types";
+import { API_URL, STRAPI_API_TOKEN } from "../utils/urls"
+import { MethodAPIType } from "@/types"
 
 const options = (type: MethodAPIType) => ({
   method: type,
@@ -9,26 +9,26 @@ const options = (type: MethodAPIType) => ({
     "Content-Type": "application/json",
     Authorization: `Bearer ${STRAPI_API_TOKEN}`,
   },
-});
+})
 
 const httpRequest = axios.create({
   baseURL: `${API_URL}/api`,
-});
+})
 
 export const get = async (path: string) => {
   try {
-    const { data } = await httpRequest.get(path, options("GET"));
-    return data;
+    const { data } = await httpRequest.get(path, options("GET"))
+    return data
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}
 
 export const post = async (path: string, payload: any) => {
   try {
-    const { data } = await httpRequest.post(path, payload, options("POST"));
-    return data;
+    const { data } = await httpRequest.post(path, payload, options("POST"))
+    return data
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}

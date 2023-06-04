@@ -1,7 +1,7 @@
-import Link from "next/link";
-import React from "react";
-import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
-import Wrapper from "./Wrapper";
+import Link from "next/link"
+import React from "react"
+import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa"
+import Wrapper from "../shared/Wrapper"
 
 const Footer: React.FC = () => {
   return (
@@ -126,7 +126,7 @@ const Footer: React.FC = () => {
         {/* RIGHT END */}
       </Wrapper>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

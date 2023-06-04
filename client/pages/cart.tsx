@@ -1,40 +1,46 @@
-import Image from "next/image";
-import React, { useState } from "react";
-import { loadStripe } from "@stripe/stripe-js";
+import { loadStripe } from "@stripe/stripe-js"
+import Image from "next/image"
+import React, { useState } from "react"
 
-import { CartEmpty, CartItem, Wrapper } from "@/components";
-import useCartStore from "@/hooks/useCartStore";
-import { formatCurrency, getTotalPrice } from "@/utils/helper";
-import * as httpRequest from "@/request/httpRequest";
-import useScrollTop from "@/hooks/useScrollTop";
-import useDocumentTitle from "@/hooks/useDocumentTitle";
+import CartEmpty from "@/components/shared/CartEmpty"
+import CartItem from "@/components/shared/CartItem"
+import Wrapper from "@/components/shared/Wrapper"
+import useCartStore from "@/hooks/useCartStore"
+import useScrollTop from "@/hooks/useScrollTop"
+import * as httpRequest from "@/request/httpRequest"
+import { formatCurrency, getTotalPrice } from "@/utils/helper"
+import Meta from "@/components/shared/Meta"
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string)
 
 interface IProps {}
 const Cart: React.FC<IProps> = () => {
-  useScrollTop();
-  useDocumentTitle("Your Cart | Dat Shoe");
-  const [loading, setLoading] = useState<boolean>(false);
-  const cartProducts = useCartStore((state) => state.cartProducts);
+  useScrollTop()
+  const [loading, setLoading] = useState<boolean>(false)
+  const cartProducts = useCartStore((state) => state.cartProducts)
 
   const handleCheckOut = async () => {
     try {
-      setLoading(true);
-      const stripe = await stripePromise;
-      const res = await httpRequest.post("/orders", { products: cartProducts });
+      setLoading(true)
+      const stripe = await stripePromise
+      const res = await httpRequest.post("/orders", { products: cartProducts })
       await stripe?.redirectToCheckout({
         sessionId: res.stripeSession.id,
-      });
+      })
     } catch (error) {
-      console.log(error);
+      console.log(error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <div className="pt-28 mb-10">
+      <Meta
+        title="Your Cart | Dat Shoes"
+        description="Fashion shoe"
+        image="https://res.cloudinary.com/djyfwalqq/image/upload/v1685025120/large_71e_P_Jq_Qifg_L_AC_UY_500_b45ac3cb8d.jpg"
+      />
       <Wrapper className="flex flex-col items-center justify-center">
         {/* HEADING */}
         <p className="text-2xl md:text-3xl font-semibold leading-tight">Shopping Cart</p>
@@ -86,7 +92,7 @@ const Cart: React.FC<IProps> = () => {
         )}
       </Wrapper>
     </div>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart

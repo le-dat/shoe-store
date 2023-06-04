@@ -1,47 +1,47 @@
-import { ProductDataIProps } from "@/types";
-import React, { useEffect, useState } from "react";
-import ProductCard from "./ProductCard";
+import { ProductDataIProps } from "@/types"
+import React, { useEffect, useState } from "react"
+import ProductCard from "./ProductCard"
 
 interface IProps {
-  products: ProductDataIProps[];
+  products: ProductDataIProps[]
 }
 interface PriceRange {
-  value: string;
-  label: string;
+  value: string
+  label: string
 }
 const priceRanges: PriceRange[] = [
   { value: "0-50", label: "Less than $50" },
   { value: "50-100", label: "$50 - $100" },
   { value: "100-200", label: "$100 - $200" },
-];
+]
 
 const FilterProductPrice: React.FC<IProps> = ({ products }) => {
-  const [selectedPriceRange, setSelectedPriceRange] = useState<string[]>([]);
-  const [productFilter, setProductFilter] = useState<ProductDataIProps[]>(products);
+  const [selectedPriceRange, setSelectedPriceRange] = useState<string[]>([])
+  const [productFilter, setProductFilter] = useState<ProductDataIProps[]>(products)
 
   const handlePriceRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const value = event.target.value
     if (selectedPriceRange.includes(value)) {
-      setSelectedPriceRange(selectedPriceRange.filter((range) => range !== value));
+      setSelectedPriceRange(selectedPriceRange.filter((range) => range !== value))
     } else {
-      setSelectedPriceRange([...selectedPriceRange, value]);
+      setSelectedPriceRange([...selectedPriceRange, value])
     }
-  };
+  }
 
   const filteredProducts = products.filter(({ attributes }) => {
     if (selectedPriceRange.length === 0) {
-      return true; // No price range selected, return all products
+      return true // No price range selected, return all products
     }
 
     return selectedPriceRange.some((range) => {
-      const [min, max] = range.split("-");
-      return attributes.price >= parseInt(min) && attributes.price <= parseInt(max);
-    });
-  });
+      const [min, max] = range.split("-")
+      return attributes.price >= parseInt(min) && attributes.price <= parseInt(max)
+    })
+  })
 
   useEffect(() => {
-    setProductFilter(filteredProducts);
-  }, [selectedPriceRange, products]);
+    setProductFilter(filteredProducts)
+  }, [selectedPriceRange, products])
 
   return (
     <div className="flex justify-between gap-2 md:gap-0 flex-wrap">
@@ -70,7 +70,7 @@ const FilterProductPrice: React.FC<IProps> = ({ products }) => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FilterProductPrice;
+export default FilterProductPrice

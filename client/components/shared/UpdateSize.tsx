@@ -1,13 +1,13 @@
-import useCartStore from "@/hooks/useCartStore";
-import { CartProductIProps } from "@/types";
-import React from "react";
+import useCartStore from "@/hooks/useCartStore"
+import { CartProductIProps } from "@/types"
+import React from "react"
 
 const UpdateSize: React.FC<CartProductIProps> = ({ id, product, quantity, size, createAt }) => {
-  const updateCartProduct = useCartStore((state) => state.updateCartProduct);
+  const updateCartProduct = useCartStore((state) => state.updateCartProduct)
 
   const handleChangeSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    updateCartProduct({ id, product, quantity, size: e.target.value, createAt });
-  };
+    updateCartProduct({ id, product, quantity, size: e.target.value, createAt })
+  }
 
   return (
     <div className="flex items-center gap-2">
@@ -26,7 +26,7 @@ const UpdateSize: React.FC<CartProductIProps> = ({ id, product, quantity, size, 
         ))}
       </select>
     </div>
-  );
-};
+  )
+}
 
-export default UpdateSize;
+export default UpdateSize

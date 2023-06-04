@@ -1,22 +1,21 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import { Html, Head, Main, NextScript } from "next/document"
+
+import Meta from "@/components/shared/Meta"
 
 export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title>Online Shoe Store | Le Dat</title>
-        <meta name="description" content="Next.js + Tailwind CSS" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-        {/* Google font */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap" rel="stylesheet" />
+        <Meta
+          title="Online Shoe Store | Le Dat"
+          description="Fashion shoe"
+          image="https://res.cloudinary.com/djyfwalqq/image/upload/v1685025120/large_71e_P_Jq_Qifg_L_AC_UY_500_b45ac3cb8d.jpg"
+        />
       </Head>
       <body>
         <Main />
         <NextScript />
       </body>
     </Html>
-  );
+  )
 }

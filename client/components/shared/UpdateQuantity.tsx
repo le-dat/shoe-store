@@ -1,20 +1,20 @@
-import useCartStore from "@/hooks/useCartStore";
-import { CartProductIProps } from "@/types";
-import React from "react";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import useCartStore from "@/hooks/useCartStore"
+import { CartProductIProps } from "@/types"
+import React from "react"
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
 
 const UpdateQuantity: React.FC<CartProductIProps> = ({ id, product, quantity, size, createAt }) => {
-  const updateCartProduct = useCartStore((state) => state.updateCartProduct);
+  const updateCartProduct = useCartStore((state) => state.updateCartProduct)
 
   const handleChangeQuantity = (type: string) => {
     if (type === "add") {
-      updateCartProduct({ id, product, quantity: quantity + 1, size, createAt });
+      updateCartProduct({ id, product, quantity: quantity + 1, size, createAt })
     } else {
       if (quantity > 1) {
-        updateCartProduct({ id, product, quantity: quantity - 1, size, createAt });
+        updateCartProduct({ id, product, quantity: quantity - 1, size, createAt })
       }
     }
-  };
+  }
 
   return (
     <div className="lg:ml-5 flex items-center gap-3">
@@ -30,7 +30,7 @@ const UpdateQuantity: React.FC<CartProductIProps> = ({ id, product, quantity, si
         <AiOutlinePlus />
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default UpdateQuantity;
+export default UpdateQuantity

@@ -1,15 +1,15 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React from "react";
+import Link from "next/link"
+import { useRouter } from "next/router"
+import React from "react"
 
 interface IProps {
-  slug: string;
-  children: React.ReactNode;
-  quantity: number;
+  slug: string
+  children: React.ReactNode
+  quantity: number
 }
 
 const MenuItem: React.FC<IProps> = ({ slug, children, quantity }) => {
-  const { query } = useRouter();
+  const { query } = useRouter()
 
   return (
     <Link
@@ -21,7 +21,7 @@ const MenuItem: React.FC<IProps> = ({ slug, children, quantity }) => {
       {children}
       <span className="rounded-full w-7 h-7 flex items-center justify-center bg-gray-200">{quantity}</span>
     </Link>
-  );
-};
+  )
+}
 
-export default MenuItem;
+export default MenuItem

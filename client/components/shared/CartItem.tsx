@@ -1,23 +1,23 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { BsTrash } from "react-icons/bs";
+import Image from "next/image"
+import Link from "next/link"
+import React from "react"
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
+import { BsTrash } from "react-icons/bs"
 
-import useCartStore from "@/hooks/useCartStore";
-import { CartProductIProps } from "@/types";
-import { formatCurrency, notify } from "@/utils/helper";
-import UpdateSize from "./UpdateSize";
-import UpdateQuantity from "./UpdateQuantity";
+import useCartStore from "@/hooks/useCartStore"
+import { CartProductIProps } from "@/types"
+import { formatCurrency, notify } from "@/utils/helper"
+import UpdateSize from "./UpdateSize"
+import UpdateQuantity from "./UpdateQuantity"
 
 const CartItem: React.FC<CartProductIProps> = ({ id, product, quantity, size, createAt }) => {
-  const props = { id, product, quantity, size, createAt };
-  const removeCartProduct = useCartStore((state) => state.removeCartProduct);
+  const props = { id, product, quantity, size, createAt }
+  const removeCartProduct = useCartStore((state) => state.removeCartProduct)
 
   const handleRemove = () => {
-    removeCartProduct(id);
-    notify("success", "Product removed from cart successfully");
-  };
+    removeCartProduct(id)
+    notify("success", "Product removed from cart successfully")
+  }
 
   return (
     <div className="flex gap-3 p-3 border-b hover:bg-gray-100 cursor-pointer transition rounded-lg [-webkit-tap-highlight-color:transparent]">
@@ -52,7 +52,7 @@ const CartItem: React.FC<CartProductIProps> = ({ id, product, quantity, size, cr
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CartItem;
+export default CartItem

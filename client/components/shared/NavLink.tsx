@@ -1,14 +1,14 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React from "react";
+import Link from "next/link"
+import { useRouter } from "next/router"
+import React from "react"
 
 interface IProps {
-  href: string;
-  children: React.ReactNode;
-  customClass?: string;
+  href: string
+  children: React.ReactNode
+  customClass?: string
 }
 const NavLink: React.FC<IProps> = ({ href, children, customClass }) => {
-  const { pathname } = useRouter();
+  const { pathname } = useRouter()
 
   return (
     <Link
@@ -17,7 +17,7 @@ const NavLink: React.FC<IProps> = ({ href, children, customClass }) => {
     >
       {children}
     </Link>
-  );
-};
+  )
+}
 
-export default NavLink;
+export default NavLink

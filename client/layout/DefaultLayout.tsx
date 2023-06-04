@@ -1,11 +1,13 @@
-import React from "react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React from "react"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
-import { Footer, Header, ModalSearch } from "@/components";
+import Footer from "@/components/partials/Footer"
+import Header from "@/components/partials/Header"
+import ModalSearch from "@/components/shared/ModalSearch"
 
 interface IProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 const DefaultLayout: React.FC<IProps> = ({ children }) => {
   return (
@@ -19,7 +21,7 @@ const DefaultLayout: React.FC<IProps> = ({ children }) => {
       {/* toastify */}
       <ToastContainer />
     </div>
-  );
-};
+  )
+}
 
-export default DefaultLayout;
+export default DefaultLayout

@@ -1,33 +1,35 @@
-import moment from "moment";
-import { GetStaticPaths, GetStaticProps } from "next";
-import React, { useState } from "react";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import moment from "moment"
+import { GetStaticPaths, GetStaticProps } from "next"
+import React, { useState } from "react"
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
+import { ReactMarkdown } from "react-markdown/lib/react-markdown"
 
-import { ButtonSize, Loading, ProductDetailsCarousel, RelativeProducts, UpdateQuantity, Wrapper } from "@/components";
-import useCartStore from "@/hooks/useCartStore";
-import useIsHeart from "@/hooks/useIsHeart";
-import useScrollTop from "@/hooks/useScrollTop";
-import { ListProductIProps } from "@/types";
-import * as httpRequest from "@/request/httpRequest";
-import { formatCurrency, getDiscountedPricePercentage, notify } from "@/utils/helper";
-import useDocumentTitle from "@/hooks/useDocumentTitle";
+import ButtonSize from "@/components/shared/ButtonSize"
+import Loading from "@/components/shared/Loading"
+import Meta from "@/components/shared/Meta"
+import ProductDetailsCarousel from "@/components/shared/ProductDetailsCarousel"
+import RelativeProducts from "@/components/shared/RelativeProducts"
+import Wrapper from "@/components/shared/Wrapper"
+import useCartStore from "@/hooks/useCartStore"
+import useIsHeart from "@/hooks/useIsHeart"
+import useScrollTop from "@/hooks/useScrollTop"
+import * as httpRequest from "@/request/httpRequest"
+import { ListProductIProps } from "@/types"
+import { formatCurrency, getDiscountedPricePercentage, notify } from "@/utils/helper"
 
 interface IProps {
-  product: ListProductIProps;
-  productRelative: ListProductIProps;
+  product: ListProductIProps
+  productRelative: ListProductIProps
 }
 
 const Product: React.FC<IProps> = ({ product, productRelative }) => {
-  const currentProduct = product.data?.[0]?.attributes;
-  const currentProductId = product.data?.[0]?.id;
-  const { isHeart, toggleWishlist } = useIsHeart(currentProductId, currentProduct);
-  const addCartProduct = useCartStore((state) => state.addCartProduct);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [showError, setShowError] = useState<boolean>(false);
-
-  useScrollTop();
-  useDocumentTitle(`${currentProduct.name} | Dat Shoes`);
+  useScrollTop()
+  const currentProduct = product.data?.[0]?.attributes
+  const currentProductId = product.data?.[0]?.id
+  const { isHeart, toggleWishlist } = useIsHeart(currentProductId, currentProduct)
+  const addCartProduct = useCartStore((state) => state.addCartProduct)
+  const [selectedSize, setSelectedSize] = useState<string | null>(null)
+  const [showError, setShowError] = useState<boolean>(false)
 
   const handleAddToCart = () => {
     if (!!selectedSize) {
@@ -37,23 +39,28 @@ const Product: React.FC<IProps> = ({ product, productRelative }) => {
         size: selectedSize,
         quantity: 1,
         createAt: moment(Date.now()).format("LLL"),
-      };
-      addCartProduct(data);
-      notify("success", "Product added to cart successfully");
+      }
+      addCartProduct(data)
+      notify("success", "Product added to cart successfully")
     } else {
-      setShowError(true);
+      setShowError(true)
     }
-  };
+  }
 
   const handleSelectedSize = (size: string) => {
-    setShowError(false);
-    setSelectedSize(size);
-  };
+    setShowError(false)
+    setSelectedSize(size)
+  }
 
-  if (!product) return <Loading />;
+  if (!product) return <Loading />
 
   return (
     <main className="w-full py-10 md:py-20 ">
+      <Meta
+        title={`${currentProduct.name} | Dat Shoes`}
+        description="Fashion shoe"
+        image="https://res.cloudinary.com/djyfwalqq/image/upload/v1685025120/large_71e_P_Jq_Qifg_L_AC_UY_500_b45ac3cb8d.jpg"
+      />
       <Wrapper>
         <div className="flex flex-col lg:flex-row md:px-10 gap-[4rem] lg:gap-[6rem]">
           {/* LEFT COLUMN */}
@@ -137,39 +144,39 @@ const Product: React.FC<IProps> = ({ product, productRelative }) => {
         <RelativeProducts products={productRelative} />
       </Wrapper>
     </main>
-  );
-};
+  )
+}
 
-export default Product;
+export default Product
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const products = await httpRequest.get(`/products?populate=*`);
+  const products = await httpRequest.get(`/products?populate=*`)
   const paths = products?.data?.map((c: { attributes: { slug: string } }) => ({
     params: {
       slug: c?.attributes?.slug,
     },
-  }));
+  }))
   return {
     paths,
     fallback: false,
-  };
-};
+  }
+}
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { slug } = params || {}; // add null checking for params
+  const { slug } = params || {} // add null checking for params
 
   if (!slug) {
     return {
       notFound: true,
-    };
+    }
   }
 
-  const product = await httpRequest.get(`/products?populate=*&filters[slug][$eq]=${slug}`);
-  const productRelative = await httpRequest.get(`/products?populate=*&filters[slug][$ne]=${slug}`);
+  const product = await httpRequest.get(`/products?populate=*&filters[slug][$eq]=${slug}`)
+  const productRelative = await httpRequest.get(`/products?populate=*&filters[slug][$ne]=${slug}`)
   return {
     props: {
       product,
       productRelative,
     },
-  };
-};
+  }
+}

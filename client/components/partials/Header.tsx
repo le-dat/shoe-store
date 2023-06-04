@@ -1,47 +1,48 @@
-("use client");
+;("use client")
 
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import { AiOutlineHeart, AiOutlineMenu } from "react-icons/ai";
-import { BsCart3, BsSearch } from "react-icons/bs";
-import { MdClose } from "react-icons/md";
+import Image from "next/image"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import React, { useEffect, useState } from "react"
+import { AiOutlineHeart, AiOutlineMenu } from "react-icons/ai"
+import { BsCart3, BsSearch } from "react-icons/bs"
+import { MdClose } from "react-icons/md"
 
-import useCartStore from "@/hooks/useCartStore";
-import useWishList from "@/hooks/useWishList";
-import ButtonNavigation from "./ButtonNavigation";
-import Menu from "./Menu";
-import MenuMobile from "./MenuMobile";
-import Wrapper from "./Wrapper";
-import useModalSearch from "@/hooks/useModalSearch";
-import * as httpRequest from "@/request/httpRequest";
+import useCartStore from "@/hooks/useCartStore"
+import useWishList from "@/hooks/useWishList"
+import ButtonNavigation from "../shared/ButtonNavigation"
+import useModalSearch from "@/hooks/useModalSearch"
+import * as httpRequest from "@/request/httpRequest"
+import Wrapper from "../shared/Wrapper"
+import Menu from "../shared/Menu"
+import MenuMobile from "../shared/MenuMobile"
+import { CategoryDataIProps } from "@/types"
 
 const Header: React.FC = () => {
-  const router = useRouter();
-  const [showSubMenu, setShowSubMenu] = useState<boolean>(false);
-  const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
-  const [hideHeader, setHideHeader] = useState<boolean>(true);
-  const [categories, setCategories] = useState<any>(0);
-  const cartProducts = useCartStore((state) => state.cartProducts);
-  const wishList = useWishList((state) => state.wishlist);
-  const setShowModal = useModalSearch((state) => state.setShowModal);
-  const IconMenuMobile = showMobileMenu ? MdClose : AiOutlineMenu;
+  const router = useRouter()
+  const [showSubMenu, setShowSubMenu] = useState<boolean>(false)
+  const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false)
+  const [hideHeader, setHideHeader] = useState<boolean>(true)
+  const [categories, setCategories] = useState<CategoryDataIProps[]>([])
+  const cartProducts = useCartStore((state) => state.cartProducts)
+  const wishList = useWishList((state) => state.wishlist)
+  const setShowModal = useModalSearch((state) => state.setShowModal)
+  const IconMenuMobile = showMobileMenu ? MdClose : AiOutlineMenu
 
   // scroll header
   useEffect(() => {
-    const handleScroll = () => setHideHeader(window.pageYOffset > 100);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const handleScroll = () => setHideHeader(window.pageYOffset > 100)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const { data } = await httpRequest.get("/categories?populate=*");
-      setCategories(data);
-    };
-    fetchCategories();
-  }, []);
+      const { data } = await httpRequest.get("/categories?populate=*")
+      setCategories(data)
+    }
+    fetchCategories()
+  }, [])
 
   return (
     <>
@@ -91,7 +92,7 @@ const Header: React.FC = () => {
         setShowMobileMenu={setShowMobileMenu}
       />
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

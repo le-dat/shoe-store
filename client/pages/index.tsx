@@ -1,22 +1,24 @@
-import { GetStaticProps } from "next";
-import { Inter } from "next/font/google";
+import { GetStaticProps } from "next"
+import { Inter } from "next/font/google"
 
-import { HeroBanner, ProductCard, Wrapper } from "@/components";
-import useScrollTop from "@/hooks/useScrollTop";
-import { ListProductIProps } from "@/types";
-import * as httpRequest from "@/request/httpRequest";
+import HeroBanner from "@/components/shared/HeroBanner"
+import ProductCard from "@/components/shared/ProductCard"
+import Wrapper from "@/components/shared/Wrapper"
+import useScrollTop from "@/hooks/useScrollTop"
+import * as httpRequest from "@/request/httpRequest"
+import { ListProductIProps } from "@/types"
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] })
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { data } = await httpRequest.get("/products?populate=*");
+  const { data } = await httpRequest.get("/products?populate=*")
   return {
     props: { data },
-  };
-};
+  }
+}
 
 export default function Home({ data }: ListProductIProps) {
-  useScrollTop();
+  useScrollTop()
 
   return (
     <main>
@@ -36,5 +38,5 @@ export default function Home({ data }: ListProductIProps) {
         </div>
       </Wrapper>
     </main>
-  );
+  )
 }

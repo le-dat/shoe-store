@@ -1,10 +1,10 @@
-import React from "react";
-import { Carousel } from "react-responsive-carousel";
+import React from "react"
+import { Carousel } from "react-responsive-carousel"
 
-import { ImageDataIProps } from "@/types";
+import { ImageDataIProps } from "@/types"
 
 interface IProps {
-  data: ImageDataIProps[];
+  data: ImageDataIProps[]
 }
 const ProductDetailsCarousel: React.FC<IProps> = ({ data }) => {
   return (
@@ -24,7 +24,7 @@ const ProductDetailsCarousel: React.FC<IProps> = ({ data }) => {
         ))}
       </Carousel>
     </div>
-  );
-};
+  )
+}
 
-export default ProductDetailsCarousel;
+export default ProductDetailsCarousel
