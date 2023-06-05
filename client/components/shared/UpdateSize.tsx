@@ -1,3 +1,5 @@
+"use client"
+
 import useCartStore from "@/hooks/useCartStore"
 import { CartProductIProps } from "@/types"
 import React from "react"

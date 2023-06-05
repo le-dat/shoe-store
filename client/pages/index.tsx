@@ -7,6 +7,7 @@ import Wrapper from "@/components/shared/Wrapper"
 import useScrollTop from "@/hooks/useScrollTop"
 import * as httpRequest from "@/request/httpRequest"
 import { ListProductIProps } from "@/types"
+import Meta from "@/components/shared/Meta"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -22,6 +23,11 @@ export default function Home({ data }: ListProductIProps) {
 
   return (
     <main>
+      <Meta
+        title="Home | Dat Shoe"
+        description="Fashion shoe"
+        image="https://res.cloudinary.com/djyfwalqq/image/upload/v1685025120/large_71e_P_Jq_Qifg_L_AC_UY_500_b45ac3cb8d.jpg"
+      />
       <HeroBanner />
       <Wrapper>
         <div className="text-center max-w-[800px] mx-auto my-[50px] md:my-[80px]">

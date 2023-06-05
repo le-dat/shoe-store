@@ -1,3 +1,5 @@
+"use client"
+
 import { ProductDataIProps } from "@/types"
 import React, { useEffect, useState } from "react"
 import ProductCard from "./ProductCard"

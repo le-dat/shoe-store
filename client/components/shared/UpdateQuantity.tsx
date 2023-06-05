@@ -1,7 +1,10 @@
-import useCartStore from "@/hooks/useCartStore"
-import { CartProductIProps } from "@/types"
+"use client"
+
 import React from "react"
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
+
+import useCartStore from "@/hooks/useCartStore"
+import { CartProductIProps } from "@/types"
 
 const UpdateQuantity: React.FC<CartProductIProps> = ({ id, product, quantity, size, createAt }) => {
   const updateCartProduct = useCartStore((state) => state.updateCartProduct)
