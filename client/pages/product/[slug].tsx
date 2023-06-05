@@ -64,9 +64,9 @@ const Product: React.FC<IProps> = ({ product, productRelative }) => {
       <Wrapper>
         <div className="flex flex-col lg:flex-row md:px-10 gap-[4rem] lg:gap-[6rem]">
           {/* LEFT COLUMN */}
-          <div className="w-full flex-1 pt-4">
+          {/* <div className="w-full flex-1 pt-4">
             <ProductDetailsCarousel data={currentProduct?.image?.data} />
-          </div>
+          </div> */}
           {/* RIGHT COLUMN  */}
           <div className="flex-1 p-3 flex flex-col ">
             {/* PRODUCT TITLE */}
