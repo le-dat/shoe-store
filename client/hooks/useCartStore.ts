@@ -22,7 +22,7 @@ const useCartStore = create<IProps>((set, get) => ({
     if (existingProduct) {
       // If product already exists, increment its quantity
       const updatedProducts = get().cartProducts.map((p) =>
-        p.id === id && p.size === size ? { ...p, quantity: p.quantity + quantity, size, createAt } : p
+        p.id === id && p.size === size ? { ...p, quantity: p.quantity + quantity, size, createAt } : p,
       )
       return set({ cartProducts: updatedProducts })
     } else {
@@ -39,7 +39,7 @@ const useCartStore = create<IProps>((set, get) => ({
 
   updateCartProduct: ({ id, quantity, size, createAt }) => {
     const updatedProducts = get().cartProducts.map((p) =>
-      p.id === id && p.createAt === createAt ? { ...p, quantity, size } : p
+      p.id === id && p.createAt === createAt ? { ...p, quantity, size } : p,
     )
     return set({ cartProducts: updatedProducts })
   },

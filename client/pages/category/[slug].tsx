@@ -25,7 +25,7 @@ const Category: React.FC<IProps> = ({ category, products, slug }) => {
   const { data, error, isLoading }: { data: ListProductIProps; error: any; isLoading: boolean } = useSWR(
     `/products?populate=*&filters[categories][slug][$eq]=${slug}&pagination[page]=${pageIndex}&pagination[pageSize]=${maxResult}`,
     httpRequest.get,
-    { fallbackData: products }
+    { fallbackData: products },
   )
   useScrollTop()
 
@@ -95,7 +95,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const category = await httpRequest.get(`/categories?filters[slug][$eq]=${slug}`)
   const products = await httpRequest.get(
-    `/products?populate=*&filters[categories][slug][$eq]=${slug}&pagination[page]=1&pagination[pageSize]=${maxResult}`
+    `/products?populate=*&filters[categories][slug][$eq]=${slug}&pagination[page]=1&pagination[pageSize]=${maxResult}`,
   )
   return {
     props: {
