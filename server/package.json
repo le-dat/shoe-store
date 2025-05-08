@@ -11,10 +11,10 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/plugin-i18n": "4.9.2",
+    "@strapi/plugin-i18n": "4.15.0",
     "@strapi/plugin-users-permissions": "4.9.2",
     "@strapi/provider-upload-cloudinary": "^4.9.2",
-    "@strapi/strapi": "4.9.2",
+    "@strapi/strapi": "5.0.0",
     "pg": "8.8.0",
     "stripe": "^12.2.0"
   },
