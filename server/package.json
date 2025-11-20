@@ -12,7 +12,7 @@
   "devDependencies": {},
   "dependencies": {
     "@strapi/plugin-users-permissions": "5.15.0",
-    "@strapi/provider-upload-cloudinary": "5.15.0",
+    "@strapi/provider-upload-cloudinary": "5.31.1",
     "@strapi/strapi": "5.15.0",
     "pg": "8.8.0",
     "stripe": "^12.2.0",
